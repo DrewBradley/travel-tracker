@@ -1,0 +1,69 @@
+/* This is an example of using Sass, otherwise plain CSS works too*/
+@import url("https://fonts.googleapis.com/css2?family=Wire+One&display=swap");
+body {
+  background: radial-gradient(circle, #b3dcff 0%, #5ecc62 100%);
+  font-family: "Wire One", sans-serif;
+  font-weight: 800;
+}
+
+.hidden {
+  display: none;
+}
+
+.dashboard {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 1%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 40% 55%;
+      grid-template-columns: 40% 55%;
+  grid-row: 65% 30%;
+  grid-gap: 5%;
+}
+
+.dashboard .dashboard-trips {
+  padding: 2%;
+  height: 300px;
+  width: auto;
+  background-color: #b3dcff;
+  border-radius: 10px;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.dashboard .dashboard-request-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2%;
+  background-color: #b3dcff;
+  border-radius: 10px;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 2;
+  grid-area: 1 / 2 / 2 / 2;
+}
+
+.dashboard .dashboard-year-review {
+  padding: 2%;
+  background-color: #b3dcff;
+  border-radius: 10px;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: 2 / 1 / 2 / 3;
+}
+/*# sourceMappingURL=base.css.map */
