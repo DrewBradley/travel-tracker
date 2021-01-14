@@ -1,10 +1,12 @@
-
-
-{
-  "id": 1,
-  "destination": "Lima, Peru",
-  "estimatedLodgingCostPerDay": 70,
-  "estimatedFlightCostPerPerson": 400,
-  "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
-  "alt": "overview of city buildings with a clear sky"
+class Destination {
+  constructor(id, destination, estimatedLodgingCostPerDay, estimatedFlightCostPerPerson, image, text) {
+    this.id = id;
+    this.name = destination;
+    this.costPerDay = estimatedLodgingCostPerDay;
+    this.costPerPerson = estimatedFlightCostPerPerson;
+    this.image = image;
+    this.altText = text;
+  }
 }
+
+export default Destination;
