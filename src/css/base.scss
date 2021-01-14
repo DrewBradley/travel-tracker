@@ -1,7 +1,54 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+@import url('https://fonts.googleapis.com/css2?family=Wire+One&display=swap');
+
+// colors
+$skyblue: #b3dcff;
+$cleangreen: #5ecc62;
+$naturgreen: #2a5934;
+
+$primary-background: radial-gradient(circle, ($skyblue) 0%, ($cleangreen) 100%);
+$logo-font: 'Wire One', sans-serif;
 ;
 
 body {
   background: $primary-background;
+  font-family: $logo-font;
+  font-weight: 800;
+}
+
+.hidden {
+  display: none;
+}
+
+.dashboard {
+  background-color: hsla(0, 0%, 100%, 0.5);
+  padding: 1%;
+  display: grid;
+  grid-template-columns: 40% 55%;
+  grid-row: 65% 30%;
+  grid-gap: 5%;
+  .dashboard-trips {
+    padding: 2%;
+    height: 300px;
+    width: auto;
+    background-color: $skyblue;
+    border-radius: 10px;
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .dashboard-request-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    background-color: $skyblue;
+    border-radius: 10px;
+    grid-area: 1 / 2 / 2 / 2;
+  }
+  .dashboard-year-review {
+    padding: 2%;
+    background-color: $skyblue;
+    border-radius: 10px;
+    grid-area: 2 / 1 / 2 / 3;
+  }
 }
