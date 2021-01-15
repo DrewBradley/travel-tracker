@@ -16,13 +16,13 @@ import {
   deleteTrip
 } from './utility.js';
 
-let traveler
+const dashboardGreeting = document.querySelector('.dashboard-greeting')
 
 const pageLoad = () => {
-  let rando = (Math.ceil(Math.random() * 50))
+  let rando = (Math.ceil(Math.random() * 49))
   getTraveler(rando)
     .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
-    .then(traveler => console.log(traveler.returnFirstNameLastInitial()))
+    .then(traveler => dashboardGreeting.innerText = "Well Hello There, " + (traveler.returnFirstNameLastInitial()))
   getTrips()
     .then(trips => console.log(trips))
   getDestinations()
