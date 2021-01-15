@@ -22,6 +22,9 @@ const pageLoad = () => {
   getTraveler(10)
     .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
     .then(traveler => console.log(traveler.returnFirstNameLastInitial()))
+  const trips = getTrips()
+    .then(trips => console.log(trips))
+
 }
 
 window.onload = pageLoad();
