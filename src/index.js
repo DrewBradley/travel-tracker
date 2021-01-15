@@ -16,8 +16,12 @@ import {
   deleteTrip
 } from './utility.js';
 
-window.onload = pageLoad();
+let traveler
 
 const pageLoad = () => {
-  
+  getTraveler(10)
+    .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
+    .then(traveler => console.log(traveler.returnFirstNameLastInitial()))
 }
+
+window.onload = pageLoad();

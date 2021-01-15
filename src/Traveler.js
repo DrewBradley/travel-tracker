@@ -4,7 +4,7 @@ class Traveler {
     this.name = name;
     this.travelerType = travelerType;
   }
-  returnFirstName() {
+  returnFirstNameLastInitial() {
       return this.name.split(' ')[0] + ' ' + this.name.split(' ')[1][0];
   }
 }
