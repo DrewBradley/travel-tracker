@@ -1,14 +1,15 @@
 class Trip {
-  constructor() {
-    this.id = id;
-    this.userID = userID;
-    this.destinationID = destinationID;
-    this.travelers = travelers;
-    this.date = date;
-    this.duration = duration;
-    this.status = status;
-    this.suggestedActivities = suggestedActivities;
+  constructor(data) {
+    this.data = data;
   }
 }
 
 export default Trip;
+// id
+// userID;
+// destinationID;
+// travelers;
+// date;
+// duration;
+// status;
+// suggestedActivities;
