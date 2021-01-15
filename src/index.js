@@ -19,7 +19,7 @@ import {
 
 const dashboardGreeting = document.querySelector('.dashboard-greeting')
 const pastTrips = document.querySelector('.dashboard-trips-past')
-const pastTripTemplate = document.querySelector('.past-trips-template')
+const tripCardTemplate = document.querySelector('.past-trips-template').content;
 const upcomingTrips = document.querySelector('.dashboard-trips-future')
 const upcomingTripTemplate = document.querySelector('.future-trips-template')
 
@@ -37,39 +37,41 @@ const pageLoad = () => {
 }
 
 const findUpcomingTrips = (today, trips) => {
-  let futureTrips = trips.filter(trips => {
-    return trips.date > today
-  })
-  if (futureTrips.length) {
-    return futureTrips
-  } else {
-    return "You have no upcoming trips!"
-  }
+  return trips.reduce((acc, trip) => {
+    if (trip.date > today) {
+      acc.push({ "id": trip.id, "destination": trip.destinationID, "date": trip.date})
+    }
+    return acc
+  }, [])
 }
 
 const findPastTrips = (today, trips) => {
-  let pastTrips = trips.filter(trips => {
-    return trips.date < today
-  })
-  return pastTrips
+  return trips.reduce((acc, trip) => {
+    if (trip.date < today) {
+      acc.push({ "id": trip.id, "destination": trip.destinationID, "date": trip.date})
+    }
+    return acc
+  }, [])
 }
 
 const displayUserTrips = (trips) => {
-  let today = new Date().toISOString().slice(0,10)
+  let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
+  console.log("Today is", today)
   let upcoming = findUpcomingTrips(today, trips);
   let past = findPastTrips(today, trips);
   console.log(past)
   past.forEach(trip => {
-    let tripCard = pastTripTemplate.cloneNode(true);
+    let tripCard = tripCardTemplate.cloneNode(true);
     pastTrips.appendChild(tripCard);
     console.log(trip)
-    pastTripTemplate.querySelector('.trip-info').textContent = `${trip}`
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.id} ${trip.destination} ${trip.date}`
   })
-  // upcoming.forEach(trip => {
-  //   let tripCard = upcomingTripTemplate.cloneNode(true);
-  //   upcomingTrips.appendChild(tripCard);
-  //   tripCard.querySelector('.trip-info').innerText = `${trip.id}`
-  // })
+  console.log(upcoming)
+  upcoming.forEach(trip => {
+    let tripCard = tripCardTemplate.cloneNode(true);
+    upcomingTrips.appendChild(tripCard);
+    tripCardTemplate.querySelector('.trip-info').innerText = `${trip.id}`
+  })
 }
 
 window.onload = pageLoad();
