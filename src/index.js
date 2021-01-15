@@ -2,4 +2,7 @@
 import './css/base.scss';
 import './images/ExcursiOnward-logo.png'
 
-console.log('This is the JavaScript entry file - your code begins here.');
+import Trips from './Trips';
+import Destination from './Destination'
+import Traveler from './Traveler'
+import Agency from './Agency'

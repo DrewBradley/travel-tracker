@@ -20,6 +20,11 @@ body {
   display: none;
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+}
+
 .dashboard {
   background-color: hsla(0, 0%, 100%, 0.5);
   padding: 1%;
