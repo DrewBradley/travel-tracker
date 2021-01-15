@@ -37,7 +37,6 @@ body {
     height: 300px;
     width: auto;
     background-color: $skyblue;
-    border-radius: 10px;
     grid-area: 1 / 1 / 2 / 2;
   }
   .dashboard-request-form {
@@ -47,13 +46,11 @@ body {
     align-items: center;
     padding: 2%;
     background-color: $skyblue;
-    border-radius: 10px;
     grid-area: 1 / 2 / 2 / 2;
   }
   .dashboard-year-review {
     padding: 2%;
     background-color: $skyblue;
-    border-radius: 10px;
     grid-area: 2 / 1 / 2 / 3;
   }
 }

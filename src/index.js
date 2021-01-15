@@ -6,3 +6,18 @@ import Trips from './Trips';
 import Destination from './Destination'
 import Traveler from './Traveler'
 import Agency from './Agency'
+
+import {
+  getTraveler,
+  getTrips,
+  getDestinations,
+  addTrip,
+  updateTrip,
+  deleteTrip
+} from './utility.js';
+
+window.onload = pageLoad();
+
+const pageLoad = () => {
+  
+}
