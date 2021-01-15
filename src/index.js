@@ -19,12 +19,14 @@ import {
 let traveler
 
 const pageLoad = () => {
-  getTraveler(10)
+  let rando = (Math.ceil(Math.random() * 50))
+  getTraveler(rando)
     .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
     .then(traveler => console.log(traveler.returnFirstNameLastInitial()))
-  const trips = getTrips()
+  getTrips()
     .then(trips => console.log(trips))
-
+  getDestinations()
+    .then(destination => console.log(destination))
 }
 
 window.onload = pageLoad();
