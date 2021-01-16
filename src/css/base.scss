@@ -1,18 +1,25 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 @import url('https://fonts.googleapis.com/css2?family=Wire+One&display=swap');
 
+
 // colors
-$skyblue: #b3dcff;
-$cleangreen: #5ecc62;
+$elementblue: #747ba1;
+$lighterblue: rgba(152, 206, 222, 0.7);
+$fontblue: #242a3a;
+$accent-tan: #ffba77;
+$sandy-tangerine: #e2854c;
 $naturgreen: #2a5934;
 
-$primary-background: radial-gradient(circle, ($skyblue) 0%, ($cleangreen) 100%);
+$box-shadow: 0px 0px 12px -3px rgba(0,0,0,0.98);
+
+$primary-background: radial-gradient(circle, ($elementblue) 0%, ($accent-tan) 100%);
 $logo-font: 'Wire One', sans-serif;
 ;
 
 body {
   background: $primary-background;
-  font-family: $logo-font;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: $fontblue;
   font-weight: 800;
   margin: 0;
 }
@@ -23,6 +30,7 @@ body {
 
 .nav {
   display: flex;
+  font-family: $logo-font;
   align-items: center;
   font-size: 2rem;
   justify-content: center;
@@ -32,7 +40,8 @@ body {
 }
 
 .dashboard {
-  background-color: hsla(0, 0%, 100%, 0.5);
+  background-color: rgba($accent-tan, .5);
+  height: 80vh;
   padding: 1%;
   display: grid;
   grid-template-columns: 55% 44%;
@@ -44,24 +53,27 @@ body {
     text-align: center;
   }
   .dashboard-trips {
+    box-shadow: $box-shadow;
     padding: 2%;
-    height: 300px;
+    height: auto;
     width: auto;
-    background-color: $skyblue;
+    background-color: lighten($lighterblue, 10%);
     grid-area: 1 / 1 / 2 / 2;
   }
   .dashboard-request-form {
     display: flex;
+    box-shadow: $box-shadow;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 2%;
-    background-color: $skyblue;
+    background-color: lighten($lighterblue, 10%);
     grid-area: 1 / 2 / 2 / 2;
   }
   .dashboard-year-review {
+    box-shadow: $box-shadow;
     padding: 2%;
-    background-color: $skyblue;
+    background-color: lighten($lighterblue, 10%);
     grid-area: 2 / 1 / 2 / 3;
   }
 }

@@ -2,7 +2,7 @@
 import './css/base.scss';
 import './images/ExcursiOnward-logo.png'
 
-import Trips from './Trips';
+import Trip from './Trips';
 import Destination from './Destination'
 import Traveler from './Traveler'
 import Agency from './Agency'
@@ -16,17 +16,53 @@ import {
   deleteTrip
 } from './utility.js';
 
+
 const dashboardGreeting = document.querySelector('.dashboard-greeting')
+const pastTrips = document.querySelector('.dashboard-trips-past')
+const tripCardTemplate = document.querySelector('.past-trips-template').content;
+const upcomingTrips = document.querySelector('.dashboard-trips-future')
+const upcomingTripTemplate = document.querySelector('.future-trips-template')
 
 const pageLoad = () => {
   let rando = (Math.ceil(Math.random() * 49))
   getTraveler(rando)
-    .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
-    .then(traveler => dashboardGreeting.innerText = "Well Hello There, " + (traveler.returnFirstNameLastInitial()))
+  .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
+  .then(traveler => dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial()))
+
   getTrips()
-    .then(trips => console.log(trips))
+    .then(trips => trips = trips.map(trip => { 
+    return new Trip(trip)}))
+    .then(trips => trips.filter(trip => {
+      if (trip.userID === rando) {
+      return trip }
+    }))
+    .then(trips => trips.forEach(trip => {
+      displayUserTrips(trip)}))
+
   getDestinations()
     .then(destination => console.log(destination))
+}
+
+const showTrip = (trip, when) => {
+  let tripCard = tripCardTemplate.cloneNode(true);
+  if (when === 'past') {
+    pastTrips.appendChild(tripCard);
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.id} ${trip.destinationID} ${trip.date}`
+  } else if (when === 'future') {
+    upcomingTrips.appendChild(tripCard);
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.id} ${trip.destinationID} ${trip.date}`
+  }
+}
+
+const displayUserTrips = (trip) => {
+  let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
+  console.log("Today is", today)
+  if (trip.isPast(today)) {
+    console.log(trip)
+    showTrip(trip, 'past')
+  } else if (trip.isFuture(today)) {
+    showTrip(trip, 'future')
+  }
 }
 
 window.onload = pageLoad();

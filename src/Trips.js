@@ -1,15 +1,27 @@
 class Trip {
-  constructor(data) {
-    this.data = data;
+  constructor(tripData) {
+    this.id = tripData.id
+    this.userID = tripData.userID;
+    this.destinationID = tripData.destinationID;
+    this.travelers = tripData.travelers;
+    this.date = tripData.date;
+    this.duration = tripData.duration;
+    this.status = tripData.status;
+    this.suggestedActivities = tripData.suggestedActivities;
   }
+
+  isPast(today){
+    if (this.date < today) {
+      return { "id": this.id, "destination": this.destinationID, "date": this.date }
+    }
+  }
+  
+  isFuture(today){
+    if (this.date > today) {
+      return { "id": this.id, "destination": this.destinationID, "date": this.date }
+    }
+  }
+
 }
 
 export default Trip;
-// id
-// userID;
-// destinationID;
-// travelers;
-// date;
-// duration;
-// status;
-// suggestedActivities;

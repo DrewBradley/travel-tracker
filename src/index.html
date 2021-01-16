@@ -3,7 +3,7 @@
   <head>
     <title>ExcursiOnward</title>
   </head>
-  <body>
+  <body style="background-image: url('./images/map-background.jpg')">
     <header class="nav">
       <img src="./images/ExcursiOnward-logo.png" alt="ExcursiOnward: where adventure starts" height="50px" width="50px">
       <h1>ExcursiOnward</h1>
@@ -13,15 +13,27 @@
         <h1 class="dashboard-greeting"></h1>
         <article class="dashboard-trips-past">
           <h2>Past Trips</h2>
-          <ul></ul>
+          <template class="past-trips-template">
+            <div>
+              <p class="trip-info"></p>
+            </div>
+          </template>
         </article>
         <article class="dashboard-trips-present">
           <h2>Current Trip</h2>
-          <ul></ul>
+          <template class="current-trips-template">
+            <div>
+              <p class="trip-info"></p>
+            </div>
+          </template>
         </article>  
         <article class="dashboard-trips-future">
           <h2>Upcoming Trips</h2>
-          <ul></ul>
+          <template class="future-trips-template">
+            <div>
+              <p class="trip-info"></p>
+            </div>
+          </template>
         </article>
       </section>
       <section class="dashboard-request-form">

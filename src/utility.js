@@ -1,4 +1,4 @@
-import Trips from './Trips'
+import Trip from './Trips'
 
 
 export const getTraveler = (userId) => {
@@ -10,8 +10,7 @@ export const getTraveler = (userId) => {
 export const getTrips = () => {
   return fetch("http://localhost:3001/api/v1/trips")
     .then(response => response.json())
-    .then(trips => trips = new Trips(trips))
-    .then(trips => trips.data.trips)
+    .then(trips => trips.trips)
 }
 
 export const getDestinations = () => {
