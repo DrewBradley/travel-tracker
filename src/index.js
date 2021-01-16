@@ -31,46 +31,40 @@ const pageLoad = () => {
     .then(traveler => dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial()))
 
   const tripsResults = getTrips()
-    .then(trips => trips = trips.map(trip => { 
-      return new Trip(trip)
-    }))
-    .then(trips => trips.filter(trip => {
-      if (trip.userID === rando) {
-      return trip }
-    }))
-    .then(trips => trips.forEach(trip => {
-      displayUserTrips(trip)
-    }))
 
   const placeResults = getDestinations()
     .then(destinations => destinations = destinations.map(destination => {
       return new Destination(destination)
     }))
-    .then(destinations => destinations = destinations.map(destination => destination.returnDestinationName(destination.id)))
     
 
   Promise.all([travelerResults, tripsResults, placeResults])
-    .then(values => console.log(values))
-    .then(() => {
-      placeResults.then((destinations) => {
-        destinations.find(place => {
-          if (place.name === "Wellington, New Zealand") {
-            return place.name
-          }
-        })
+    .then(values => values[1].map(trip => {
+      let placeName = values[2].find(place => {
+        if (place.id === trip.destinationID) {
+          return place.name
+        }
       })
-      .then(destinations => console.log(destinations))
-    })
+      return new Trip(trip, placeName.name)
+    }))
+    .then(values => values.filter(trip => {
+      if (trip.userID === rando) {
+      return trip }
+    }))
+    .then(values => values.forEach(trip => {
+      displayUserTrips(trip)
+    }))
+    // .then(values => console.log(values))
 }
 
 const showTrip = (trip, when) => {
   let tripCard = tripCardTemplate.cloneNode(true);
   if (when === 'past') {
     pastTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.id} ${trip.destinationID} ${trip.date}`
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationName}, Date: ${trip.date}, TripID: ${trip.id}`
   } else if (when === 'future') {
     upcomingTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.id} ${trip.destinationID} ${trip.date}`
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationName}, Date: ${trip.date}, TripID: ${trip.id}`
   }
 }
 
