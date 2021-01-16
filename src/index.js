@@ -2,7 +2,7 @@
 import './css/base.scss';
 import './images/ExcursiOnward-logo.png'
 
-import Trips from './Trips';
+import Trip from './Trips';
 import Destination from './Destination'
 import Traveler from './Traveler'
 import Agency from './Agency'
@@ -28,50 +28,41 @@ const pageLoad = () => {
   getTraveler(rando)
   .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
   .then(traveler => dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial()))
+
   getTrips()
-    .then(trips => trips = new Trips(trips))
-    .then(trips => trips.findUserTrips(rando))
-    .then(trips => displayUserTrips(trips))
+    .then(trips => trips = trips.map(trip => { 
+    return new Trip(trip)}))
+    .then(trips => trips.filter(trip => {
+      if (trip.userID === rando) {
+      return trip }
+    }))
+    .then(trips => trips.forEach(trip => {
+      displayUserTrips(trip)}))
+
   getDestinations()
     .then(destination => console.log(destination))
 }
 
-const findUpcomingTrips = (today, trips) => {
-  return trips.reduce((acc, trip) => {
-    if (trip.date > today) {
-      acc.push({ "id": trip.id, "destination": trip.destinationID, "date": trip.date})
-    }
-    return acc
-  }, [])
+const showTrip = (trip, when) => {
+  let tripCard = tripCardTemplate.cloneNode(true);
+  if (when === 'past') {
+    pastTrips.appendChild(tripCard);
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.id} ${trip.destinationID} ${trip.date}`
+  } else if (when === 'future') {
+    upcomingTrips.appendChild(tripCard);
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.id} ${trip.destinationID} ${trip.date}`
+  }
 }
 
-const findPastTrips = (today, trips) => {
-  return trips.reduce((acc, trip) => {
-    if (trip.date < today) {
-      acc.push({ "id": trip.id, "destination": trip.destinationID, "date": trip.date})
-    }
-    return acc
-  }, [])
-}
-
-const displayUserTrips = (trips) => {
+const displayUserTrips = (trip) => {
   let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
   console.log("Today is", today)
-  let upcoming = findUpcomingTrips(today, trips);
-  let past = findPastTrips(today, trips);
-  console.log(past)
-  past.forEach(trip => {
-    let tripCard = tripCardTemplate.cloneNode(true);
-    pastTrips.appendChild(tripCard);
+  if (trip.isPast(today)) {
     console.log(trip)
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.id} ${trip.destination} ${trip.date}`
-  })
-  console.log(upcoming)
-  upcoming.forEach(trip => {
-    let tripCard = tripCardTemplate.cloneNode(true);
-    upcomingTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').innerText = `${trip.id}`
-  })
+    showTrip(trip, 'past')
+  } else if (trip.isFuture(today)) {
+    showTrip(trip, 'future')
+  }
 }
 
 window.onload = pageLoad();
