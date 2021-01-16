@@ -52,7 +52,9 @@ const pageLoad = () => {
     .then(values => values.reduce((acc, trip) => {
       console.log(trip.calculateTotalCost())
       displayUserTrips(trip)
-      acc += trip.calculateTotalCost();
+      if (trip.status === "approved") {
+        acc += trip.calculateTotalCost()
+      }
       return acc
     }, 0))
     .then(values => yearCost.innerText = "You have spent $" + values.toFixed(2) + " on travel this year")
