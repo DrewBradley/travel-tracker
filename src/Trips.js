@@ -36,7 +36,7 @@ class Trip {
   calculateTotalCost() {
     let travelCost = this.calculateTripCost();
     let agentFee = this.calculateAgentFee(travelCost);
-    return "$" + (travelCost + agentFee).toFixed(2)
+    return travelCost + agentFee
   }
 
 }

@@ -19,9 +19,9 @@ import {
 
 const dashboardGreeting = document.querySelector('.dashboard-greeting')
 const pastTrips = document.querySelector('.dashboard-trips-past')
-const tripCardTemplate = document.querySelector('.past-trips-template').content;
+const tripCardTemplate = document.querySelector('.trips-template').content;
 const upcomingTrips = document.querySelector('.dashboard-trips-future')
-const upcomingTripTemplate = document.querySelector('.future-trips-template')
+const yearCost = document.querySelector('.dashboard-year-cost')
 
 const pageLoad = () => {
   let rando = (Math.ceil(Math.random() * 49))
@@ -49,18 +49,20 @@ const pageLoad = () => {
       if (trip.userID === rando) {
       return trip }
     }))
-    .then(values => values.forEach(trip => {
+    .then(values => values.reduce((acc, trip) => {
       console.log(trip.calculateTotalCost())
       displayUserTrips(trip)
-    }))
-    // .then(values => console.log(values))
+      acc += trip.calculateTotalCost();
+      return acc
+    }, 0))
+    .then(values => yearCost.innerText = "You have spent $" + values.toFixed(2) + " on travel this year")
 }
 
 const showTrip = (trip, when) => {
   let tripCard = tripCardTemplate.cloneNode(true);
   if (when === 'past') {
     pastTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, ${trip.duration} days, Cost: ${trip.calculateTotalCost()}, TripID: ${trip.id}`
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, ${trip.duration} days, Cost: $${trip.calculateTotalCost().toFixed(2)}, TripID: ${trip.id}`
   } else if (when === 'future') {
     upcomingTrips.appendChild(tripCard);
     tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, ${trip.duration} days, Status: ${trip.status}, TripID: ${trip.id}`
@@ -75,5 +77,6 @@ const displayUserTrips = (trip) => {
     showTrip(trip, 'future')
   }
 }
+
 
 window.onload = pageLoad();
