@@ -25,40 +25,50 @@ const upcomingTripTemplate = document.querySelector('.future-trips-template')
 
 const pageLoad = () => {
   let rando = (Math.ceil(Math.random() * 49))
-  getTraveler(rando)
-  .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
-  .then(traveler => dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial()))
 
-  getTrips()
-    .then(trips => trips = trips.map(trip => { 
-    return new Trip(trip)}))
-    .then(trips => trips.filter(trip => {
+  const travelerResults = getTraveler(rando)
+    .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
+    .then(traveler => dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial()))
+
+  const tripsResults = getTrips()
+
+  const placeResults = getDestinations()
+    .then(destinations => destinations = destinations.map(destination => {
+      return new Destination(destination)
+    }))
+    
+
+  Promise.all([travelerResults, tripsResults, placeResults])
+    .then(values => values[1].map(trip => {
+      let place = values[2].find(place => {
+        return place.id === trip.destinationID
+      })
+      return new Trip(trip, place.name)
+    }))
+    .then(values => values.filter(trip => {
       if (trip.userID === rando) {
       return trip }
     }))
-    .then(trips => trips.forEach(trip => {
-      displayUserTrips(trip)}))
-
-  getDestinations()
-    .then(destination => console.log(destination))
+    .then(values => values.forEach(trip => {
+      displayUserTrips(trip)
+    }))
+    // .then(values => console.log(values))
 }
 
 const showTrip = (trip, when) => {
   let tripCard = tripCardTemplate.cloneNode(true);
   if (when === 'past') {
     pastTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.id} ${trip.destinationID} ${trip.date}`
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationName}, Date: ${trip.date}, TripID: ${trip.id}`
   } else if (when === 'future') {
     upcomingTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.id} ${trip.destinationID} ${trip.date}`
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationName}, Date: ${trip.date}, TripID: ${trip.id}`
   }
 }
 
 const displayUserTrips = (trip) => {
   let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
-  console.log("Today is", today)
   if (trip.isPast(today)) {
-    console.log(trip)
     showTrip(trip, 'past')
   } else if (trip.isFuture(today)) {
     showTrip(trip, 'future')
