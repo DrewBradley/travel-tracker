@@ -25,22 +25,42 @@ const upcomingTripTemplate = document.querySelector('.future-trips-template')
 
 const pageLoad = () => {
   let rando = (Math.ceil(Math.random() * 49))
-  getTraveler(rando)
-  .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
-  .then(traveler => dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial()))
 
-  getTrips()
+  const travelerResults = getTraveler(rando)
+    .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
+    .then(traveler => dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial()))
+
+  const tripsResults = getTrips()
     .then(trips => trips = trips.map(trip => { 
-    return new Trip(trip)}))
+      return new Trip(trip)
+    }))
     .then(trips => trips.filter(trip => {
       if (trip.userID === rando) {
       return trip }
     }))
     .then(trips => trips.forEach(trip => {
-      displayUserTrips(trip)}))
+      displayUserTrips(trip)
+    }))
 
-  getDestinations()
-    .then(destination => console.log(destination))
+  const placeResults = getDestinations()
+    .then(destinations => destinations = destinations.map(destination => {
+      return new Destination(destination)
+    }))
+    .then(destinations => destinations = destinations.map(destination => destination.returnDestinationName(destination.id)))
+    
+
+  Promise.all([travelerResults, tripsResults, placeResults])
+    .then(values => console.log(values))
+    .then(() => {
+      placeResults.then((destinations) => {
+        destinations.find(place => {
+          if (place.name === "Wellington, New Zealand") {
+            return place.name
+          }
+        })
+      })
+      .then(destinations => console.log(destinations))
+    })
 }
 
 const showTrip = (trip, when) => {
@@ -56,9 +76,7 @@ const showTrip = (trip, when) => {
 
 const displayUserTrips = (trip) => {
   let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
-  console.log("Today is", today)
   if (trip.isPast(today)) {
-    console.log(trip)
     showTrip(trip, 'past')
   } else if (trip.isFuture(today)) {
     showTrip(trip, 'future')

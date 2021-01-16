@@ -16,7 +16,7 @@ export const getTrips = () => {
 export const getDestinations = () => {
   return fetch("http://localhost:3001/api/v1/destinations")
     .then(response => response.json())
-    .then(destinations => destinations = (destinations.destinations))
+    .then(destinations => destinations = destinations.destinations)
 }
 
 export const addTrip = (id, userID, destinationID, travelers, date, duration, status, suggestedActivities) => {
