@@ -40,12 +40,10 @@ const pageLoad = () => {
 
   Promise.all([travelerResults, tripsResults, placeResults])
     .then(values => values[1].map(trip => {
-      let placeName = values[2].find(place => {
-        if (place.id === trip.destinationID) {
-          return place.name
-        }
+      let place = values[2].find(place => {
+        return place.id === trip.destinationID
       })
-      return new Trip(trip, placeName.name)
+      return new Trip(trip, place.name)
     }))
     .then(values => values.filter(trip => {
       if (trip.userID === rando) {
