@@ -58,7 +58,7 @@ const pageLoad = () => {
       }
       return acc
     }, 0))
-    .then(values => yearCost.innerText = "You have spent $" + values.toFixed(2) + " on travel this year")
+    .then(values => yearCost.innerText = "You have spent $" + values.toFixed(2) + " on travel in the last year")
 }
 
 const showTrip = (trip, when) => {
