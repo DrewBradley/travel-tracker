@@ -33,6 +33,12 @@ class Trip {
     return tripCostPerPerson * this.travelers;
   }
 
+  calculateTotalCost() {
+    let travelCost = this.calculateTripCost();
+    let agentFee = this.calculateAgentFee(travelCost);
+    return "$" + (travelCost + agentFee).toFixed(2)
+  }
+
 }
 
 export default Trip;

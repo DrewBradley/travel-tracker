@@ -50,7 +50,7 @@ const pageLoad = () => {
       return trip }
     }))
     .then(values => values.forEach(trip => {
-      console.log(trip.calculateTripCost())
+      console.log(trip.calculateTotalCost())
       displayUserTrips(trip)
     }))
     // .then(values => console.log(values))
@@ -60,10 +60,10 @@ const showTrip = (trip, when) => {
   let tripCard = tripCardTemplate.cloneNode(true);
   if (when === 'past') {
     pastTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, Cost: ${trip.calculateTripCost()}, TripID: ${trip.id}`
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, ${trip.duration} days, Cost: ${trip.calculateTotalCost()}, TripID: ${trip.id}`
   } else if (when === 'future') {
     upcomingTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, TripID: ${trip.id}`
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, ${trip.duration} days, Status: ${trip.status}, TripID: ${trip.id}`
   }
 }
 
