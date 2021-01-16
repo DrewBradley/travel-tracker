@@ -40,18 +40,17 @@ const pageLoad = () => {
 
   Promise.all([travelerResults, tripsResults, placeResults])
     .then(values => values[1].map(trip => {
-      let placeName = values[2].find(place => {
-        if (place.id === trip.destinationID) {
-          return place.name
-        }
+      let place = values[2].find(place => {
+        return place.id === trip.destinationID
       })
-      return new Trip(trip, placeName.name)
+      return new Trip(trip, place)
     }))
     .then(values => values.filter(trip => {
       if (trip.userID === rando) {
       return trip }
     }))
     .then(values => values.forEach(trip => {
+      console.log(trip.calculateTripCost())
       displayUserTrips(trip)
     }))
     // .then(values => console.log(values))
@@ -61,10 +60,10 @@ const showTrip = (trip, when) => {
   let tripCard = tripCardTemplate.cloneNode(true);
   if (when === 'past') {
     pastTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationName}, Date: ${trip.date}, TripID: ${trip.id}`
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, Cost: ${trip.calculateTripCost()}, TripID: ${trip.id}`
   } else if (when === 'future') {
     upcomingTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationName}, Date: ${trip.date}, TripID: ${trip.id}`
+    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, TripID: ${trip.id}`
   }
 }
 

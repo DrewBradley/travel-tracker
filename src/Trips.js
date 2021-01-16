@@ -1,9 +1,9 @@
 class Trip {
-  constructor(tripData, destinationName) {
+  constructor(tripData, destinationData) {
     this.id = tripData.id
     this.userID = tripData.userID;
     this.destinationID = tripData.destinationID;
-    this.destinationName = destinationName;
+    this.destinationData = destinationData;
     this.travelers = tripData.travelers;
     this.date = tripData.date;
     this.duration = tripData.duration;
@@ -21,6 +21,16 @@ class Trip {
     if (this.date > today) {
       return { "id": this.id, "destination": this.destinationID, "date": this.date }
     }
+  }
+
+  calculateAgentFee(totalTravelCost){
+    let agentFee = totalTravelCost/10;
+    return agentFee
+  }
+
+  calculateTripCost() {
+    let tripCostPerPerson = this.destinationData.costPerPerson + (this.destinationData.costPerDay * this.duration)
+    return tripCostPerPerson * this.travelers;
   }
 
 }
