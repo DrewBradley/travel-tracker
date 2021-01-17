@@ -16,6 +16,18 @@ class Trip {
       return { "id": this.id, "destination": this.destinationID, "date": this.date }
     }
   }
+
+  isCurrent(today) {
+    let currentDate = new Date(this.date);
+    let datesArray = []
+    for (let i = 0; i < this.duration; i++){
+      currentDate.setDate(currentDate.getDate()+1);
+      datesArray.push(currentDate.toISOString().slice(0,10).replaceAll("-", "/"));
+    }
+    if (datesArray.includes(today)) {
+      console.log('THIS IS HAPPENING!')
+    }
+  }
   
   isFuture(today){
     if (this.date > today) {

@@ -73,6 +73,7 @@ const showTrip = (trip, when) => {
 }
 
 const displayUserTrips = (trip) => {
+  trip.isCurrent()
   if (trip.isPast(today)) {
     showTrip(trip, 'past')
   } else if (trip.isFuture(today)) {
