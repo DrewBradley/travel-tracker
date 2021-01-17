@@ -1,7 +1,7 @@
 export const testTrips = [
   {
     "id": 1,
-    "userID": 5,
+    "userID": 2,
     "destinationID": 10,
     "travelers": 1,
     "date": "2019/09/16",
@@ -11,7 +11,7 @@ export const testTrips = [
   },
   {
     "id": 2,
-    "userID": 6,
+    "userID": 2,
     "destinationID": 9,
     "travelers": 5,
     "date": "2020/10/04",
@@ -29,10 +29,10 @@ export const testTrips = [
     "suggestedActivities": []
   }, {
     "id": 4,
-    "userID": 10,
+    "userID": 1,
     "destinationID": 7,
     "travelers": 2,
-    "date": "2020/02/25",
+    "date": "2021/02/25",
     "duration": 10,
     "status": "approved",
     "suggestedActivities": []
