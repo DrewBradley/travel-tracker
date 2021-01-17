@@ -29,4 +29,9 @@ describe('Destination', function() {
     expect(destination4.name).to.eql("Cartagena, Colombia");
   });
 
+  it('should contain estimated cost details', function() {
+    expect(destination1.costPerDay).to.eql(70);
+    expect(destination2.costPerPerson).to.eql(780);
+  });
+
 });
