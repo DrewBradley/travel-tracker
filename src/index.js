@@ -15,7 +15,8 @@ import {
   updateTrip,
   deleteTrip
 } from './utility.js';
-
+let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
+let lastYear = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().slice(0,10).replaceAll("-", "/");
 
 const dashboardGreeting = document.querySelector('.dashboard-greeting')
 const pastTrips = document.querySelector('.dashboard-trips-past')
@@ -50,14 +51,14 @@ const pageLoad = () => {
       return trip }
     }))
     .then(values => values.reduce((acc, trip) => {
-      console.log(trip.calculateTotalCost())
       displayUserTrips(trip)
-      if (trip.status === "approved") {
+      if (trip.status === "approved" && trip.date > lastYear) {
+        console.log(trip.date)
         acc += trip.calculateTotalCost()
       }
       return acc
     }, 0))
-    .then(values => yearCost.innerText = "You have spent $" + values.toFixed(2) + " on travel this year")
+    .then(values => yearCost.innerText = "You have spent $" + values.toFixed(2) + " on travel in the last year")
 }
 
 const showTrip = (trip, when) => {
@@ -72,7 +73,7 @@ const showTrip = (trip, when) => {
 }
 
 const displayUserTrips = (trip) => {
-  let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
+  trip.isCurrent()
   if (trip.isPast(today)) {
     showTrip(trip, 'past')
   } else if (trip.isFuture(today)) {
