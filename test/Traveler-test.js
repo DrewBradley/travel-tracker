@@ -9,6 +9,7 @@ import Trips from '../src/Trips';
 import Destination from '../src/Destination'
 
 describe('Traveler', function() {
+  let traveler1, traveler2, trip1, trip2, trip3, trip4, trip5, destination1, destination2, destination3, destination4, destination5
   beforeEach
   it('should be a function', function() {
     expect(true).to.equal(true);

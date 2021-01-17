@@ -19,24 +19,4 @@ export const testTravelers = [
     "id": 5,
     "name": "Tiffy Grout",
     "travelerType": "thrill-seeker",
-  }, {
-    "id": 6,
-    "name": "Laverna Flawith",
-    "travelerType": "shopper",
-  }, {
-    "id": 7,
-    "name": "Emmet Sandham",
-    "travelerType": "relaxer",
-  }, {
-    "id": 8,
-    "name": "Carlin O'Reilly",
-    "travelerType": "history buff",
-  }, {
-    "id": 9,
-    "name": "Natalee Deegin",
-    "travelerType": "relaxer",
-  }, {
-    "id": 10,
-    "name": "Rickie Jodlowski",
-    "travelerType": "relaxer",
   }]
