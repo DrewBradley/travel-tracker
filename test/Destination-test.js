@@ -5,21 +5,28 @@ import { testTravelers } from '../test-data/test-traveler-data'
 import { testTrips } from '../test-data/test-trip-data'
 import { testDestinations } from '../test-data/test-destination-data'
 import Traveler from '../src/Traveler';
-import Trip from '../src/Trip';
+import Trips from '../src/Trips';
 import Destination from '../src/Destination'
 
 describe('Destination', function() {
   let destination1, destination2, destination3, destination4, destination5
 
-  beforeEach(function() {
-    destination1 = new Destination(testTrips[0]);
-    destination2 = new Destination(testTrips[1]);
-    destination3 = new Destination(testTrips[2]);
-    destination4 = new Destination(testTrips[3]); 
-    destination5 = new Destination(testTrips[4]);
+  beforeEach(() => {
+    destination1 = new Destination(testDestinations[0]);
+    destination2 = new Destination(testDestinations[1]);
+    destination3 = new Destination(testDestinations[2]);
+    destination4 = new Destination(testDestinations[3]); 
+    destination5 = new Destination(testDestinations[4]);
   });
+
   it('should be an instance of Destination', function() {
     expect(destination1).to.be.an.instanceof(Destination);
     expect(destination2).to.be.an.instanceof(Destination);
   });
+
+  it('should contain a destination id and name', function() {
+    expect(destination3.id).to.eql(3);
+    expect(destination4.name).to.eql("Cartagena, Colombia");
+  });
+
 });

@@ -1,4 +1,4 @@
-const testTrips = [
+export const testTrips = [
   {
     "id": 1,
     "userID": 44,
@@ -271,5 +271,3 @@ const testTrips = [
     "status": "approved",
     "suggestedActivities": []
   }]
-
-  export default testTrips;

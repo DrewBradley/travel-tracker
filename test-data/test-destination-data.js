@@ -1,4 +1,4 @@
-const testDestinations = [{
+export const testDestinations = [{
   "id": 1,
   "destination": "Lima, Peru",
   "estimatedLodgingCostPerDay": 70,
@@ -156,5 +156,3 @@ const testDestinations = [{
   "image": "https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1573&q=80",
   "alt": "sand with palm trees and tall buildings in the background"
 }]
-
-export default testDestinations;
