@@ -106,7 +106,15 @@ const findDuration = (start, end) => {
   return (endDate.getDate()) - (startDate.getDate())
 }
 
-
+const displayEstimate = (newTrip, destinationData) => {
+  tripPreviewTitle.innerText = `${destinationData.name}`
+  tripPreviewData.innerHTML = `
+  <p class="duration">${newTrip.duration}</p>
+  <p class="total-cost">${newTrip.calculateTotalCost()}</p>
+  <button class="book-trip">Book It!</button>`
+  tripPreviewImage.setAttribute('src', destinationData.image)
+  tripPreviewImage.setAttribute('alt', destinationData.altText)
+}
 
 const returnTripEstimate = () => {
   getDestinations()
