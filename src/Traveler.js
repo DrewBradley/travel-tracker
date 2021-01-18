@@ -16,6 +16,13 @@ class Traveler {
       this.trips.push(trip)
     }
   }
+
+  findYearlyTravelCost() {
+    return this.trips.reduce((total, trip) => {
+      total += trip.calculateTotalCost()
+      return total
+    }, 0)
+  }
 }
 
 export default Traveler;

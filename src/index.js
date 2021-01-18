@@ -53,6 +53,7 @@ const pageLoad = () => {
       })
       displayTravelerName(traveler);
       displayUserTrips(traveler)
+      displayYearlyCost(traveler)
     })
 }
 
@@ -77,6 +78,10 @@ const displayUserTrips = (traveler) => {
       showTrip(currentTripList, trip);
     }
   })
+}
+
+const displayYearlyCost = (traveler) => {
+  yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost().toFixed(2)} in the last year.`
 }
 
 window.onload = pageLoad();
