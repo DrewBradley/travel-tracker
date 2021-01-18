@@ -19,6 +19,7 @@ let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
 let lastYear = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().slice(0,10).replaceAll("-", "/");
 
 const dashboardGreeting = document.querySelector('.dashboard-greeting')
+const destinationList = document.querySelector('.destination-list')
 const pastTrips = document.querySelector('.dashboard-trips-past')
 const upcomingTrips = document.querySelector('.dashboard-trips-future')
 const currentTrips = document.querySelector('.dashboard-trips-present')
@@ -51,6 +52,9 @@ const pageLoad = () => {
         trip.whenIsThisTrip(today)
         traveler.isThisMyTrip(trip)
       })
+      values[2].forEach(destination => {
+        addToDestinationList(destination)
+      })
       displayTravelerName(traveler);
       displayUserTrips(traveler)
       displayYearlyCost(traveler)
@@ -59,6 +63,13 @@ const pageLoad = () => {
 
 const displayTravelerName = (traveler) => {
   dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial())
+}
+
+const addToDestinationList = (destination) => {
+  let option = document.createElement('option');
+  destinationList.appendChild(option);
+  option.innerText = `${destination.name}`
+  option.setAttribute('value', `${destination.id}`)
 }
 
 const showTrip = (parent, trip) => {
@@ -83,5 +94,6 @@ const displayUserTrips = (traveler) => {
 const displayYearlyCost = (traveler) => {
   yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(today, lastYear).toFixed(2)} in the last year.`
 }
+
 
 window.onload = pageLoad();
