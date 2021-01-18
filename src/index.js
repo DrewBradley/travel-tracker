@@ -109,6 +109,9 @@ const findDuration = (start, end) => {
 const displayEstimate = (newTrip, destinationData) => {
   tripPreviewTitle.innerText = `Your trip to ${destinationData.name}`
   tripPreviewData.innerHTML = `
+  <p class="destination">Destination ${destinationData.name}</p>
+  <p class="leaving">Departing on: ${newTrip.duration}</p>
+  <p class="returning">Returning on: ${newTrip.duration}</p>
   <p class="duration">Duration ${newTrip.duration}</p>
   <p class="total-cost">Cost: $${newTrip.calculateTotalCost()}</p>
   <button class="book-trip">Book It!</button>`
