@@ -2,7 +2,7 @@ export const testTrips = [
   {
     "id": 1,
     "userID": 2,
-    "destinationID": 10,
+    "destinationID": 4,
     "travelers": 1,
     "date": "2019/09/16",
     "duration": 8,
@@ -12,7 +12,7 @@ export const testTrips = [
   {
     "id": 2,
     "userID": 2,
-    "destinationID": 9,
+    "destinationID": 3,
     "travelers": 5,
     "date": "2020/10/04",
     "duration": 18,
@@ -21,7 +21,7 @@ export const testTrips = [
   }, {
     "id": 3,
     "userID": 3,
-    "destinationID": 8,
+    "destinationID": 2,
     "travelers": 4,
     "date": "2020/05/22",
     "duration": 17,
@@ -30,7 +30,7 @@ export const testTrips = [
   }, {
     "id": 4,
     "userID": 1,
-    "destinationID": 7,
+    "destinationID": 5,
     "travelers": 2,
     "date": "2021/02/25",
     "duration": 10,
@@ -39,9 +39,9 @@ export const testTrips = [
   }, {
     "id": 5,
     "userID": 1,
-    "destinationID": 6,
+    "destinationID": 4,
     "travelers": 3,
-    "date": "2020/04/30",
+    "date": "2020/06/04",
     "duration": 18,
     "status": "approved",
     "suggestedActivities": []

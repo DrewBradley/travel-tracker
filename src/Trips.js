@@ -11,27 +11,22 @@ class Trip {
     this.suggestedActivities = tripData.suggestedActivities;
   }
 
-  isPast(today){
-    if (this.date < today) {
-      return { "id": this.id, "destination": this.destinationID, "date": this.date }
-    }
+  findTripEndDate() {
+    let date = new Date(this.date)
+    let endDate = new Date(date.setDate(date.getDate() + this.duration))
+    return new Date(endDate).toISOString().slice(0,10)
   }
 
-  isCurrent(today) {
-    let currentDate = new Date(this.date);
-    let datesArray = []
-    for (let i = 0; i < this.duration; i++){
-      currentDate.setDate(currentDate.getDate()+1);
-      datesArray.push(currentDate.toISOString().slice(0,10).replaceAll("-", "/"));
-    }
-    if (datesArray.includes(today)) {
-      console.log('THIS IS HAPPENING!')
-    }
-  }
-  
-  isFuture(today){
-    if (this.date > today) {
-      return { "id": this.id, "destination": this.destinationID, "date": this.date }
+  whenIdThisTrip(today) {
+    let endDate = this.findTripEndDate()
+    if (endDate < today) {
+      return "IT HAPPENED!"
+      // find the user 
+      // push this trip into user past array
+    } else if (endDate > today && this.date > today) {
+      return 'THIS IS HAPPENING!'
+    } else if (this.date > today) {
+      return 'THIS HAS NOT HAPPENED!'
     }
   }
 
