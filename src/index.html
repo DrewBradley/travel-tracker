@@ -34,7 +34,7 @@
         <label for="end-date">Return On:</label>
         <input class="end-date" type="date">
         <label for="traveler-count">How Many Travelers?</label>
-        <input class="traveler-count" type="number" min=1 max=15>
+        <input class="traveler-count" type="number" min=1 max=20>
         <label for="destinations">Where Do You Want To Go?</label>
         <select class="destination-list" name="" id="">
           <option placeholder="choose a destination">choose a destination</option>
@@ -48,12 +48,21 @@
         <p>View 2019 travel spending.</p>
       </section>
 
-      <section class="trip-preview hidden">
+      <section class="destination-preview hidden">
+        <h2 class="destination-preview-title">Get Ready for Greece</h2>
+        <ul class="destination-suggested-activities"></ul>
+        <p class="flight-cost">Flights start at $300</p>
+      </section>
+
+      <section class="trip-preview">
         <h2 class="trip-preview-title">Get Ready for Greece</h2>
-        <p class="suggested-activities"></p>
-        <p class="duration">12 days</p>
-        <p class="total-cost">$1259.32</p>
-        <button class="book-trip">Book It!</button>
+        <article class="trip-preview-data">
+          <p class="suggested-activities"></p>
+          <p class="duration">12 days</p>
+          <p class="total-cost">$1259.32</p>
+          <button class="book-trip">Book It!</button>
+        </article>
+        <img class="trip-preview-image" src="" alt="">
       </section>
 
     </main>
