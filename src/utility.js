@@ -1,4 +1,4 @@
-import Trip from './Trips'
+import Destination from './Destination'
 
 
 export const getTraveler = (userId) => {
@@ -17,18 +17,21 @@ export const getDestinations = () => {
   return fetch("http://localhost:3001/api/v1/destinations")
     .then(response => response.json())
     .then(destinations => destinations = destinations.destinations)
+    .then(destinations => destinations = destinations.map(destination => {
+      return new Destination(destination)
+    }))
 }
 
-export const addTrip = (id, userID, destinationID, travelers, date, duration, status, suggestedActivities) => {
+export const addTrip = (trip) => {
   let postBody = {
-    id: id,
-    userID: userID,
-    destinationID: destinationID, 
-    travelers: travelers, 
-    date: date, 
-    duration: duration, 
-    status: status, 
-    suggestedActivities: suggestedActivities
+    id: trip.id,
+    userID: trip.userID,
+    destinationID: trip.destinationID, 
+    travelers: trip.travelers, 
+    date: trip.date, 
+    duration: trip.duration, 
+    status: trip.status, 
+    suggestedActivities: trip.suggestedActivities
   }
   console.log(postBody)
   return fetch("http://localhost:3001/api/v1/trips", {

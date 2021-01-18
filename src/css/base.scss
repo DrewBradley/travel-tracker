@@ -44,7 +44,7 @@ body {
   height: 80vh;
   padding: 1%;
   display: grid;
-  grid-template-columns: 55% 44%;
+  grid-template-columns: repeat(4, 24%);
   grid-row: 65% 30%;
   grid-gap: 1%;
   .dashboard-greeting {
@@ -58,7 +58,7 @@ body {
     height: auto;
     width: auto;
     background-color: lighten($lighterblue, 10%);
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 1 / 1 / 2 / 4;
   }
   .dashboard-request-form {
     display: flex;
@@ -68,8 +68,32 @@ body {
     align-items: center;
     padding: 2%;
     background-color: lighten($lighterblue, 10%);
-    grid-area: 1 / 2 / 2 / 2;
+    grid-area: 1 / 4 / 1 / 4;
   }
+  .trip-preview {
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(2, 49%);
+    grid-row: 9% 90%;
+    grid-gap: 1%;
+    box-shadow: $box-shadow;
+    padding: 2%;
+    background-color: lighten($lighterblue, 10%);
+    grid-area: 2 / 3 / 2 / 5;
+    .trip-preview-title {
+      margin: 0;
+      grid-area: 1 / 1 / 2 / 3;
+    }
+    .trip-preview-data {
+      grid-area: 2 / 1 / 2 / 2;
+    }
+    .trip-preview-image {
+      max-height: 200px;
+      width: 100%;
+      grid-area: 2 / 2 / 2 / 3;
+    }
+  }
+
   .dashboard-year-review {
     box-shadow: $box-shadow;
     padding: 2%;
