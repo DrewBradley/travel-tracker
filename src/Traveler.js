@@ -16,6 +16,15 @@ class Traveler {
       this.trips.push(trip)
     }
   }
+
+  findYearlyTravelCost(today, lastYear) {
+    return this.trips.reduce((total, trip) => {
+      if (trip.findTripEndDate().replaceAll("-", "/") < today) {
+        total += trip.calculateTotalCost()
+        return total
+      }
+    }, 0)
+  }
 }
 
 export default Traveler;

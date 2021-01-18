@@ -20,66 +20,68 @@ let lastYear = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).to
 
 const dashboardGreeting = document.querySelector('.dashboard-greeting')
 const pastTrips = document.querySelector('.dashboard-trips-past')
-const tripCardTemplate = document.querySelector('.trips-template').content;
 const upcomingTrips = document.querySelector('.dashboard-trips-future')
+const currentTrips = document.querySelector('.dashboard-trips-present')
+const pastTripList = document.querySelector('.past-trips')
+const upcomingTripList = document.querySelector('.future-trips')
+const currentTripList = document.querySelector('.current-trips')
 const yearCost = document.querySelector('.dashboard-year-cost')
 
 const pageLoad = () => {
   let rando = (Math.ceil(Math.random() * 49))
+  // let rando = (1)
 
   const travelerResults = getTraveler(rando)
-    .then(traveler => traveler = new Traveler(traveler.id, traveler.name, traveler.travelerType))
-    .then(traveler => dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial()))
-
   const tripsResults = getTrips()
-
   const placeResults = getDestinations()
     .then(destinations => destinations = destinations.map(destination => {
       return new Destination(destination)
     }))
     
-
   Promise.all([travelerResults, tripsResults, placeResults])
-    .then(values => values[1].map(trip => {
-      let place = values[2].find(place => {
-        return place.id === trip.destinationID
+    .then(values => {
+      let traveler = new Traveler(values[0])
+      let trips = values[1].map(trip => {
+        let place = values[2].find(place => {
+          return place.id === trip.destinationID
+        })
+        return new Trip(trip, place)
       })
-      return new Trip(trip, place)
-    }))
-    .then(values => values.filter(trip => {
-      if (trip.userID === rando) {
-      return trip }
-    }))
-    .then(values => values.reduce((acc, trip) => {
-      displayUserTrips(trip)
-      if (trip.status === "approved" && trip.date > lastYear) {
-        console.log(trip.date)
-        acc += trip.calculateTotalCost()
-      }
-      return acc
-    }, 0))
-    .then(values => yearCost.innerText = "You have spent $" + values.toFixed(2) + " on travel in the last year")
+      trips.forEach(trip => {
+        trip.whenIsThisTrip(today)
+        traveler.isThisMyTrip(trip)
+      })
+      displayTravelerName(traveler);
+      displayUserTrips(traveler)
+      displayYearlyCost(traveler)
+    })
 }
 
-const showTrip = (trip, when) => {
-  let tripCard = tripCardTemplate.cloneNode(true);
-  if (when === 'past') {
-    pastTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, ${trip.duration} days, Cost: $${trip.calculateTotalCost().toFixed(2)}, TripID: ${trip.id}`
-  } else if (when === 'future') {
-    upcomingTrips.appendChild(tripCard);
-    tripCardTemplate.querySelector('.trip-info').textContent = `${trip.destinationData.name}, Date: ${trip.date}, ${trip.duration} days, Status: ${trip.status}, TripID: ${trip.id}`
-  }
+const displayTravelerName = (traveler) => {
+  dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial())
 }
 
-const displayUserTrips = (trip) => {
-  trip.isCurrent()
-  if (trip.isPast(today)) {
-    showTrip(trip, 'past')
-  } else if (trip.isFuture(today)) {
-    showTrip(trip, 'future')
-  }
+const showTrip = (parent, trip) => {
+    let li = document.createElement('li');
+    parent.appendChild(li);
+    li.innerText = `${trip.destinationData.name}, Date: ${trip.date}, ${trip.duration} days, Cost: $${trip.calculateTotalCost().toFixed(2)}, Status: ${trip.status}, TripID: ${trip.id}`
+};
+
+const displayUserTrips = (traveler) => {
+  console.log(traveler.trips.length)
+  traveler.trips.forEach(trip => {
+    if (trip.happeningData === 'past') {
+      showTrip(pastTripList, trip);
+    } else if (trip.happeningData === 'upcoming') {
+      showTrip(upcomingTripList, trip);
+    } else if (trip.happeningData === 'current') {
+      showTrip(currentTripList, trip);
+    }
+  })
 }
 
+const displayYearlyCost = (traveler) => {
+  yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(today, lastYear).toFixed(2)} in the last year.`
+}
 
 window.onload = pageLoad();

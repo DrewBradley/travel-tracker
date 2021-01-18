@@ -19,13 +19,12 @@ class Trip {
   }
 
   whenIsThisTrip(today) {
-    let endDate = this.findTripEndDate()
-    if (endDate < today) {
-      this.happeningData = 'past';
-      // find the user 
-      // push this trip into user past array
-    } else if (endDate > today && this.date > today) {
+    let endDate = this.findTripEndDate().replaceAll("-", "/")
+    let startDate = this.date;
+    if (endDate > today && startDate < today) {
       this.happeningData = 'current';
+    } else if (endDate < today) {
+      this.happeningData = 'past';
     } else if (this.date > today) {
       this.happeningData = 'upcoming';
     }
