@@ -48,12 +48,12 @@ describe('Trips', function() {
 
   it('should be able to tell if the trip has happened', function() {
     let today = '2020-06-08';
-    let itHasNotHappened = trip3.whenIdThisTrip(today)
-    let itHasHappened = trip1.whenIdThisTrip(today)
-    let itIsHappening = trip5.whenIdThisTrip(today)
-    expect(itHasNotHappened).to.eql('THIS HAS NOT HAPPENED!');
-    expect(itHasHappened).to.eql('IT HAPPENED!');
-    expect(itIsHappening).to.eql('THIS IS HAPPENING!');
+    trip3.whenIsThisTrip(today)
+    trip1.whenIsThisTrip(today)
+    trip5.whenIsThisTrip(today)
+    expect(trip3.happeningData).to.eql('upcoming');
+    expect(trip1.happeningData).to.eql('past');
+    expect(trip5.happeningData).to.eql('current');
   });
 
   it('should be able to calculate the cost of the travel', function() {

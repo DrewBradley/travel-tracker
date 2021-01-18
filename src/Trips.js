@@ -2,6 +2,7 @@ class Trip {
   constructor(tripData, destinationData) {
     this.id = tripData.id
     this.userID = tripData.userID;
+    this.happeningData;
     this.destinationID = tripData.destinationID;
     this.destinationData = destinationData;
     this.travelers = tripData.travelers;
@@ -17,16 +18,16 @@ class Trip {
     return new Date(endDate).toISOString().slice(0,10)
   }
 
-  whenIdThisTrip(today) {
+  whenIsThisTrip(today) {
     let endDate = this.findTripEndDate()
     if (endDate < today) {
-      return "IT HAPPENED!"
+      this.happeningData = 'past';
       // find the user 
       // push this trip into user past array
     } else if (endDate > today && this.date > today) {
-      return 'THIS IS HAPPENING!'
+      this.happeningData = 'current';
     } else if (this.date > today) {
-      return 'THIS HAS NOT HAPPENED!'
+      this.happeningData = 'upcoming';
     }
   }
 
