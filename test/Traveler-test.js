@@ -40,22 +40,26 @@ describe('Traveler', function() {
     expect(travelerName).to.eql("Ham L");
   });
 
-  it('should be able to store traveler\'s past trips', function() {
-    traveler1.pastTrips.push(trip1, trip2, trip3);
-    expect(traveler1.pastTrips.length).to.eql(3);
-    expect(traveler1.pastTrips).to.deep.equal([trip1, trip2, trip3]);
+  it('should be able to store traveler\'s trips', function() {
+    traveler1.trips.push(trip1, trip2, trip3);
+    expect(traveler1.trips.length).to.eql(3);
+    expect(traveler1.trips).to.deep.equal([trip1, trip2, trip3]);
   });
 
-  it('should be able to store traveler\'s future trips', function() {
-    traveler2.futureTrips.push(trip4, trip5);
-    expect(traveler2.futureTrips.length).to.eql(2);
-    expect(traveler2.futureTrips).to.deep.equal([trip4, trip5]);
+  it('should be able to tell if a trip belongs to a traveler', function() {
+    traveler2.isThisMyTrip(trip1);
+    traveler2.isThisMyTrip(trip2);
+    traveler2.isThisMyTrip(trip3);
+    traveler2.isThisMyTrip(trip4);
+    traveler2.isThisMyTrip(trip5);
+    expect(traveler2.trips.length).to.eql(2);
+    expect(traveler2.trips).to.deep.equal([trip1, trip2]);
   });
 
-  it('should be able to store traveler\'s current trips', function() {
-    traveler1.currentTrips.push(trip4);
-    expect(traveler1.currentTrips.length).to.eql(1);
-    expect(traveler1.currentTrips).to.deep.equal([trip4]);
-  });
+  // it('should be able to store traveler\'s current trips', function() {
+  //   traveler1.currentTrips.push(trip4);
+  //   expect(traveler1.currentTrips.length).to.eql(1);
+  //   expect(traveler1.currentTrips).to.deep.equal([trip4]);
+  // });
 
 });
