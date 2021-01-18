@@ -19,6 +19,7 @@ import {
 let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
 let lastYear = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().slice(0,10).replaceAll("-", "/");
 
+const dashboard = document.querySelector('.dashboard')
 const dashboardGreeting = document.querySelector('.dashboard-greeting')
 const destinationList = document.querySelector('.destination-list')
 const pastTrips = document.querySelector('.dashboard-trips-past')
@@ -33,14 +34,14 @@ const tripStartDate = document.querySelector('.start-date')
 const tripEndDate = document.querySelector('.end-date')
 const travelerCount = document.querySelector('.traveler-count')
 const tripDestination = document.querySelector('.destination-list')
-const estimateButton = document.querySelector('.book-trip')
+const estimateButton = document.querySelector('.get-estimate')
 
 const tripPreviewTitle = document.querySelector('.trip-preview-title');
 const tripPreviewData = document.querySelector('.trip-preview-data');
 const tripPreviewImage = document.querySelector('.trip-preview-image');
 const yearCost = document.querySelector('.dashboard-year-cost');
-let rando = (Math.ceil(Math.random() * 49))
-// let rando = (1)
+// let rando = (Math.ceil(Math.random() * 49))
+let rando = (1)
 
 const pageLoad = () => {
 
@@ -119,7 +120,7 @@ const displayEstimate = (newTrip, destinationData) => {
   tripPreviewImage.setAttribute('alt', destinationData.altText)
 }
 
-const returnTripEstimate = () => {
+const returnTripEstimate = (event) => {
   getDestinations()
     .then(destinations => {
     let destinationData = destinations.find(place => {
@@ -129,17 +130,21 @@ const returnTripEstimate = () => {
     let end = tripEndDate.value;
     let duration = findDuration(start, end);
     let newTrip = new Trip({
-      "id": 101,
+      "id": Date.now(),
       "userID": rando,
       "destinationID": parseInt(tripDestination.value),
       "travelers": parseInt(travelerCount.value),
-      "date": start,
+      "date": start.replaceAll("-", "/"),
       "duration": duration,
       "status": 'pending',
       "suggestedActivities": ['do stuff'],
     }, destinationData)
-    let tripCost = 
-    displayEstimate(newTrip, destinationData)
+    if (event.target.classList.contains('get-estimate')) {
+      displayEstimate(newTrip, destinationData)
+    } else if (event.target.classList.contains('book-trip')) {
+    addTrip(newTrip)
+    showTrip(upcomingTripList, newTrip)
+    }
   })
 }
 
@@ -147,5 +152,5 @@ const displayYearlyCost = (traveler) => {
   yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(today, lastYear).toFixed(2)} in the last year.`
 }
 
-estimateButton.addEventListener('click', returnTripEstimate)
+dashboard.addEventListener('click', returnTripEstimate)
 window.onload = pageLoad();
