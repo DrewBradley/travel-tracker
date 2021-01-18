@@ -25,7 +25,7 @@ describe('Traveler', function() {
     destination5 = new Destination(testDestinations[4]);
   });
   
-  it('should be an instance of Destination', function() {
+  it('should be an instance of Traveler', function() {
     expect(traveler1).to.be.an.instanceof(Traveler);
     expect(traveler2).to.be.an.instanceof(Traveler);
   });
@@ -43,16 +43,19 @@ describe('Traveler', function() {
   it('should be able to store traveler\'s past trips', function() {
     traveler1.pastTrips.push(trip1, trip2, trip3);
     expect(traveler1.pastTrips.length).to.eql(3);
+    expect(traveler1.pastTrips).to.deep.equal([trip1, trip2, trip3]);
   });
 
   it('should be able to store traveler\'s future trips', function() {
     traveler2.futureTrips.push(trip4, trip5);
     expect(traveler2.futureTrips.length).to.eql(2);
+    expect(traveler2.futureTrips).to.deep.equal([trip4, trip5]);
   });
 
   it('should be able to store traveler\'s current trips', function() {
     traveler1.currentTrips.push(trip4);
     expect(traveler1.currentTrips.length).to.eql(1);
+    expect(traveler1.currentTrips).to.deep.equal([trip4]);
   });
 
 });
