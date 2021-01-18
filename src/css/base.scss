@@ -84,11 +84,13 @@ body {
       margin: 0;
       grid-area: 1 / 1 / 2 / 3;
     }
-    .trip-preview-image {
-      grid-area: 2 / 2 / 2 / 3;
+    .trip-preview-data {
+      grid-area: 2 / 1 / 2 / 2;
     }
     .trip-preview-image {
-      grid-area: 1 / 2 / 2 / 3;
+      max-height: 200px;
+      width: 100%;
+      grid-area: 2 / 2 / 2 / 3;
     }
   }
 
