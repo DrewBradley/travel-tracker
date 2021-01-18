@@ -67,7 +67,7 @@ const showTrip = (parent, trip) => {
 };
 
 const displayUserTrips = (traveler) => {
-  console.log(traveler.trips)
+  console.log(traveler.trips.length)
   traveler.trips.forEach(trip => {
     if (trip.happeningData === 'past') {
       showTrip(pastTripList, trip);
