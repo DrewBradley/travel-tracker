@@ -17,10 +17,12 @@ class Traveler {
     }
   }
 
-  findYearlyTravelCost() {
+  findYearlyTravelCost(today, lastYear) {
     return this.trips.reduce((total, trip) => {
-      total += trip.calculateTotalCost()
-      return total
+      if (trip.findTripEndDate().replaceAll("-", "/") < today) {
+        total += trip.calculateTotalCost()
+        return total
+      }
     }, 0)
   }
 }

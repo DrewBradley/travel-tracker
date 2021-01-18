@@ -81,7 +81,7 @@ const displayUserTrips = (traveler) => {
 }
 
 const displayYearlyCost = (traveler) => {
-  yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost().toFixed(2)} in the last year.`
+  yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(today, lastYear).toFixed(2)} in the last year.`
 }
 
 window.onload = pageLoad();
