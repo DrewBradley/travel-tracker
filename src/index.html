@@ -9,6 +9,7 @@
       <img src="./images/ExcursiOnward-logo.png" alt="ExcursiOnward: where adventure starts" height="50px" width="50px">
       <h1>ExcursiOnward</h1>
     </header>
+
     <section class="login-dashboard hidden">
       <label for="login-user-name">Username</label>
       <input type="text" name="login-user-name" id="login-user-name">
@@ -16,6 +17,7 @@
       <input type="text" name="login-password" id="login-password">
       <button class="login-button">Log In!</button>
     </section>
+
     <main class="dashboard">
       <section class="dashboard-trips">
         <h1 class="dashboard-greeting"></h1>
@@ -28,26 +30,26 @@
           </ul>
         </article>  
         <article class="dashboard-trips-future">
-          <ul aria-label="Past Trips" class="future-trips">
+          <ul aria-label="Upcoming Trips" class="future-trips">
           </ul>
         </article>
       </section>
+
       <section class="dashboard-request-form">
         <h2>Book A Trip!</h2>
-        <form action="">
-          <label for="start-date">Leave On:</label>
-          <input class="start-date" name="start-date" type="date" required>
-          <label for="end-date">Return On:</label>
-          <input class="end-date" name="end-date" type="date" required>
-          <label for="traveler-count">How Many Travelers?</label>
-          <input class="traveler-count" name="traveler-count" type="number" min=1 max=20 required>
-          <label for="destinations">Where Do You Want To Go?</label>
-          <select class="destination-list" name="destination-list" id="" required>
-            <option placeholder="choose a destination">choose a destination</option>
-          </select>
-          <button class="get-estimate">Get Cost Estimate</button>
-        </form>
+        <label for="start-date">Leave On:</label>
+        <input class="start-date" name="start-date" type="date">
+        <label for="end-date">Return On:</label>
+        <input class="end-date" name="end-date" type="date">
+        <label for="traveler-count">How Many Travelers?</label>
+        <input class="traveler-count" name="traveler-count" type="number" min=1 max=20>
+        <label for="destinations">Where Do You Want To Go?</label>
+        <select class="destination-list" name="destination-list" id="">
+          <option placeholder="choose a destination">choose a destination</option>
+        </select>
+        <button class="get-estimate">Get Cost Estimate</button>
       </section>
+
       <section class="dashboard-year-review">
         <h2 class="dashboard-year-cost"></h2>
         <p>View 2021 travel spending.</p>
@@ -71,7 +73,7 @@
           <p class="trip-preview-leaving"></p>
           <p class="trip-preview-duration"></p>
           <p class="trip-preview-total-cost"></p>
-          <button class="book-trip">Book It!</button>
+          <button class="book-trip hidden">Book It!</button>
         </article>
         <img class="trip-preview-image" src="" alt="">
       </section>

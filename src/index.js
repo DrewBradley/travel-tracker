@@ -27,15 +27,20 @@ const loginButton = document.querySelector('.login-button');
 
 // dashboard
 const dashboard = document.querySelector('.dashboard')
+const upcomingTripList = document.querySelector('.future-trips')
 
 // trip request selectors
+const tripStartDate = document.querySelector('.start-date')
+const tripEndDate = document.querySelector('.end-date')
+const travelerCount = document.querySelector('.traveler-count')
+const tripDestination = document.querySelector('.destination-list')
 
-// let travelerID = (Math.ceil(Math.random() * 49))
-let travelerID
+let travelerID = (Math.ceil(Math.random() * 49))
+// let travelerID
 
 const pageLoad = () => {
 
-  const travelerResults = getTraveler(44)
+  const travelerResults = getTraveler(travelerID)
   const tripsResults = getTrips()
   const placeResults = getDestinations()
     
@@ -69,10 +74,6 @@ const findDuration = (start, end) => {
 }
 
 const returnTripEstimate = (event) => {
-  const tripStartDate = document.querySelector('.start-date')
-  const tripEndDate = document.querySelector('.end-date')
-  const travelerCount = document.querySelector('.traveler-count')
-  const tripDestination = document.querySelector('.destination-list')
   getDestinations()
     .then(destinations => {
     let destinationData = destinations.find(place => {
@@ -99,7 +100,6 @@ const returnTripEstimate = (event) => {
     }
   })
 };
-
 
 loginButton.addEventListener('click', domUpdates.login)
 dashboard.addEventListener('click', returnTripEstimate)

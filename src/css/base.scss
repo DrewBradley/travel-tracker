@@ -32,12 +32,9 @@ ul:before{
   margin-left: -15px;
 }
 
-:required {
-  background: lighten($accent-tan, 20%);
-}
-
 input {
   cursor: pointer;
+  background: lighten($accent-tan, 20%);
 }
 
 button {
@@ -100,13 +97,7 @@ button {
     background-color: lighten($lighterblue, 10%);
     grid-area: 1 / 1 / 2 / 4;
   }
-  form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
+
   .dashboard-request-form {
     border-radius: $rounded;
     display: flex;
