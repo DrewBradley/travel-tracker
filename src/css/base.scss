@@ -2,15 +2,16 @@
 
 // colors
 $elementblue: #747ba1;
-$lighterblue: rgba(152, 206, 222, 0.7);
+$lighterblue: rgba(199, 226, 234, 0.7);
 $fontblue: #242a3a;
-$accent-tan: #ffba77;
+$accent-tan: #f7e0c9;
 $sandy-tangerine: #e2854c;
 $naturgreen: #2a5934;
 
 $box-shadow: 0px 0px 12px -3px rgba(0,0,0,0.98);
+$rounded: 5px;
 
-$primary-background: radial-gradient(circle, ($elementblue) 0%, ($accent-tan) 100%);
+$primary-background: $naturgreen;
 $logo-font: 'Wire One', sans-serif;
 ;
 
@@ -24,8 +25,15 @@ body {
   margin: 0;
 }
 
+ul:before{
+  content: attr(aria-label);
+  font-size: 120%;
+  font-weight: 800;
+  margin-left: -15px;
+}
+
 :required {
-  background:$accent-tan;
+  background: lighten($accent-tan, 20%);
 }
 
 input {
@@ -39,6 +47,7 @@ button {
   height: 2rem;
   font-size: 1rem;
   box-shadow: $box-shadow;
+  border-radius: $rounded;
   cursor: pointer;
 }
 
@@ -84,6 +93,7 @@ button {
   
   .dashboard-trips {
     box-shadow: $box-shadow;
+    border-radius: $rounded;
     padding: 2%;
     height: auto;
     width: auto;
@@ -92,6 +102,7 @@ button {
   }
   
   .dashboard-request-form {
+    border-radius: $rounded;
     display: flex;
     box-shadow: $box-shadow;
     flex-direction: column;
@@ -106,6 +117,7 @@ button {
     }
   }
   .trip-preview, .destination-preview {
+    border-radius: $rounded;
     display: grid;
     text-align: center;
     grid-template-columns: repeat(2, 49%);
@@ -130,6 +142,7 @@ button {
   }
 
   .dashboard-year-review {
+    border-radius: $rounded;
     box-shadow: $box-shadow;
     padding: 2%;
     background-color: lighten($lighterblue, 10%);
