@@ -30,8 +30,13 @@ describe('Destination', function() {
   });
 
   it('should contain estimated cost details', function() {
+<<<<<<< Updated upstream
     expect(destination1.costPerDay).to.eql(70);
     expect(destination2.costPerPerson).to.eql(780);
+=======
+    expect(destination1.costPerDay).to.eql(3);
+    expect(destination2.costPerPerson).to.eql("Cartagena, Colombia");
+>>>>>>> Stashed changes
   });
 
 });
