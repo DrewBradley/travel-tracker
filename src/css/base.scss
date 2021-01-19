@@ -82,6 +82,10 @@ body {
     padding: 2%;
     background-color: lighten($lighterblue, 10%);
     grid-area: 1 / 4 / 1 / 4;
+
+    .destination-list {
+      max-width: 80%;
+    }
   }
   .trip-preview {
     display: grid;

@@ -71,8 +71,8 @@ const pageLoad = () => {
         addToDestinationList(destination)
       })
       displayTravelerName(traveler);
-      displayUserTrips(traveler)
-      displayYearlyCost(traveler)
+      displayUserTrips(traveler);
+      displayYearlyCost(traveler);
     })
 }
 
@@ -115,8 +115,7 @@ const displayEstimate = (newTrip, destinationData) => {
   tripPreviewTitle.innerText = `Your trip to ${destinationData.name}`
   tripPreviewData.innerHTML = `
   <p class="destination">Destination ${destinationData.name}</p>
-  <p class="leaving">Departing on: ${newTrip.duration}</p>
-  <p class="returning">Returning on: ${newTrip.duration}</p>
+  <p class="leaving">Departing on: ${newTrip.date}</p>
   <p class="duration">Duration ${newTrip.duration}</p>
   <p class="total-cost">Cost: $${newTrip.calculateTotalCost()}</p>
   <button class="book-trip">Book It!</button>`
@@ -153,7 +152,8 @@ const returnTripEstimate = (event) => {
 }
 
 const displayYearlyCost = (traveler) => {
-  yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(today, lastYear)} in the last year.`
+  console.log(traveler.findYearlyTravelCost(lastYear))
+  yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(lastYear).toFixed(2)} in the last year.`
 }
 
 const login = () => {
@@ -175,4 +175,4 @@ const login = () => {
 
 loginButton.addEventListener('click', login)
 dashboard.addEventListener('click', returnTripEstimate)
-window.onload = pageLoad();
+// window.onload = pageLoad();
