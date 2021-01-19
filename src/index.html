@@ -8,14 +8,14 @@
       <img src="./images/ExcursiOnward-logo.png" alt="ExcursiOnward: where adventure starts" height="50px" width="50px">
       <h1>ExcursiOnward</h1>
     </header>
-    <section class="login-dashboard">
+    <section class="login-dashboard hidden">
       <label for="login-user-name">Username</label>
       <input type="text" name="login-user-name" id="login-user-name">
       <label for="login-password">Password</label>
       <input type="text" name="login-password" id="login-password">
       <button class="login-button">Log In!</button>
     </section>
-    <main class="dashboard hidden">
+    <main class="dashboard">
       <section class="dashboard-trips">
         <h1 class="dashboard-greeting"></h1>
         <article class="dashboard-trips-past">
@@ -58,8 +58,8 @@
       <section class="destination-preview">
         <h2 class="destination-preview-title"></h2>
         <article class="trip-preview-data">
-          <p class="flight-cost">Flights start at $300</p>
-          <p class="expense-cost">Stay for as little as $180 a day!</p>
+          <p class="flight-cost"></p>
+          <p class="expense-cost"></p>
         </article>
         <img class="destination-preview-image" src="" alt="">
       </section>
@@ -67,6 +67,10 @@
       <section class="trip-preview hidden">
         <h2 class="trip-preview-title"></h2>
         <article class="trip-preview-data">
+          <p class="trip-preview-destination"></p>
+          <p class="trip-preview-leaving"></p>
+          <p class="trip-preview-duration"></p>
+          <p class="trip-preview-total-cost"></p>
           <button class="book-trip">Book It!</button>
         </article>
         <img class="trip-preview-image" src="" alt="">
