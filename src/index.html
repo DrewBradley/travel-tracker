@@ -34,17 +34,19 @@
       </section>
       <section class="dashboard-request-form">
         <h2>Book A Trip!</h2>
-        <label for="start-date">Leave On:</label>
-        <input class="start-date" type="date" required>
-        <label for="end-date">Return On:</label>
-        <input class="end-date" type="date" required>
-        <label for="traveler-count">How Many Travelers?</label>
-        <input class="traveler-count" type="number" min=1 max=20 required>
-        <label for="destinations">Where Do You Want To Go?</label>
-        <select class="destination-list" name="" id="" required>
-          <option placeholder="choose a destination">choose a destination</option>
-        </select>
-        <button class="get-estimate">Get Cost Estimate</button>
+        <form action="">
+          <label for="start-date">Leave On:</label>
+          <input class="start-date" name="start-date" type="date" required>
+          <label for="end-date">Return On:</label>
+          <input class="end-date" name="end-date" type="date" required>
+          <label for="traveler-count">How Many Travelers?</label>
+          <input class="traveler-count" name="traveler-count" type="number" min=1 max=20 required>
+          <label for="destinations">Where Do You Want To Go?</label>
+          <select class="destination-list" name="destination-list" id="" required>
+            <option placeholder="choose a destination">choose a destination</option>
+          </select>
+          <button class="get-estimate">Get Cost Estimate</button>
+        </form>
       </section>
       <section class="dashboard-year-review">
         <h2 class="dashboard-year-cost"></h2>
