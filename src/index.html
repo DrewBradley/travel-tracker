@@ -8,7 +8,14 @@
       <img src="./images/ExcursiOnward-logo.png" alt="ExcursiOnward: where adventure starts" height="50px" width="50px">
       <h1>ExcursiOnward</h1>
     </header>
-    <main class="dashboard">
+    <section class="login-dashboard">
+      <label for="login-user-name">User Name</label>
+      <input type="text" name="login-user-name" id="">
+      <label for="login-password">Password</label>
+      <input type="text" name="login-password" id="">
+      <button class="login-button">Log In!</button>
+    </section>
+    <main class="dashboard hidden">
       <section class="dashboard-trips">
         <h1 class="dashboard-greeting"></h1>
         <article class="dashboard-trips-past">
@@ -52,6 +59,7 @@
         <h2 class="destination-preview-title"></h2>
         <ul class="destination-suggested-activities"></ul>
         <p class="flight-cost">Flights start at $300</p>
+        <p class="expense-cost">Stay for as little as $180 a day!</p>
       </section>
 
       <section class="trip-preview">

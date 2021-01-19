@@ -40,8 +40,9 @@ const tripPreviewTitle = document.querySelector('.trip-preview-title');
 const tripPreviewData = document.querySelector('.trip-preview-data');
 const tripPreviewImage = document.querySelector('.trip-preview-image');
 const yearCost = document.querySelector('.dashboard-year-cost');
-// let rando = (Math.ceil(Math.random() * 49))
-let rando = (1)
+
+let rando = (Math.ceil(Math.random() * 49))
+// let rando = (1)
 
 const pageLoad = () => {
 
@@ -89,7 +90,6 @@ const showTrip = (parent, trip) => {
 };
 
 const displayUserTrips = (traveler) => {
-  console.log(traveler.trips.length)
   traveler.trips.forEach(trip => {
     if (trip.happeningData === 'past') {
       showTrip(pastTripList, trip);
@@ -149,7 +149,7 @@ const returnTripEstimate = (event) => {
 }
 
 const displayYearlyCost = (traveler) => {
-  yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(today, lastYear).toFixed(2)} in the last year.`
+  yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(today, lastYear)} in the last year.`
 }
 
 dashboard.addEventListener('click', returnTripEstimate)
