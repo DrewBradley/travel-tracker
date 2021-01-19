@@ -28,7 +28,7 @@ const loginButton = document.querySelector('.login-button');
 // dashboard
 const dashboard = document.querySelector('.dashboard')
 const upcomingTripList = document.querySelector('.future-trips')
-
+const highlight = document.querySelector('.destination-preview-button')
 // trip request selectors
 const tripStartDate = document.querySelector('.start-date')
 const tripEndDate = document.querySelector('.end-date')
@@ -60,7 +60,6 @@ const pageLoad = () => {
       values[2].forEach(destination => {
         domUpdates.addToDestinationList(destination)
       })
-      domUpdates.displayHighlight()
       domUpdates.displayTravelerName(traveler);
       domUpdates.displayUserTrips(traveler);
       domUpdates.displayYearlyCost(traveler);
@@ -102,5 +101,6 @@ const returnTripEstimate = (event) => {
 };
 
 loginButton.addEventListener('click', domUpdates.login)
+highlight.addEventListener('click', domUpdates.displayHighlight)
 dashboard.addEventListener('click', returnTripEstimate)
 window.onload = pageLoad();

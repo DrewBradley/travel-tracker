@@ -38,13 +38,13 @@
       <section class="dashboard-request-form">
         <h2>Book A Trip!</h2>
         <label for="start-date">Leave On:</label>
-        <input class="start-date" name="start-date" type="date">
+        <input class="start-date" id="start-date" type="date">
         <label for="end-date">Return On:</label>
-        <input class="end-date" name="end-date" type="date">
+        <input class="end-date" id="end-date" type="date">
         <label for="traveler-count">How Many Travelers?</label>
-        <input class="traveler-count" name="traveler-count" type="number" min=1 max=20>
+        <input class="traveler-count" id="traveler-count" type="number" min=1 max=20>
         <label for="destinations">Where Do You Want To Go?</label>
-        <select class="destination-list" name="destination-list" id="">
+        <select class="destination-list" id="destinations">
           <option placeholder="choose a destination">choose a destination</option>
         </select>
         <button class="get-estimate">Get Cost Estimate</button>
@@ -57,17 +57,18 @@
         <p>View 2019 travel spending.</p>
       </section>
 
-      <section class="destination-preview">
-        <h2 class="destination-preview-title"></h2>
+      <section class="destination-preview" aria-label="Destination Spotlight">
+        <h2 class="destination-preview-title">Destination Preview</h2>
         <article class="trip-preview-data">
           <p class="flight-cost"></p>
           <p class="expense-cost"></p>
         </article>
         <img class="destination-preview-image" src="" alt="">
+        <button class="destination-preview-button">see a new destination</button>
       </section>
 
       <section class="trip-preview hidden">
-        <h2 class="trip-preview-title"></h2>
+        <h2 class="trip-preview-title">Trip Preview</h2>
         <article class="trip-preview-data">
           <p class="trip-preview-destination"></p>
           <p class="trip-preview-leaving"></p>
