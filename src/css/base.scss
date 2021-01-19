@@ -1,6 +1,4 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
 @import url('https://fonts.googleapis.com/css2?family=Wire+One&display=swap');
-
 
 // colors
 $elementblue: #747ba1;
@@ -22,6 +20,24 @@ body {
   color: $fontblue;
   font-weight: 800;
   margin: 0;
+}
+
+:required {
+  background:$accent-tan;
+}
+
+input {
+  cursor: pointer;
+}
+
+button {
+  margin: 5%;
+  background-color: $sandy-tangerine;
+  border: 0;
+  height: 2rem;
+  font-size: 1rem;
+  box-shadow: $box-shadow;
+  cursor: pointer;
 }
 
 .hidden {
@@ -118,3 +134,7 @@ body {
     grid-area: 2 / 1 / 2 / 3;
   }
 }
+
+
+
+@import "_breakpoints";
