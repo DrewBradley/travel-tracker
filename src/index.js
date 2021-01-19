@@ -23,25 +23,12 @@ import {
 let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
 
 // login
-const loginScreen = document.querySelector('.login-dashboard');
-const loginName = document.querySelector('#login-user-name');
-const loginPassword = document.querySelector('#login-password');
 const loginButton = document.querySelector('.login-button');
 
 // dashboard
 const dashboard = document.querySelector('.dashboard')
 
 // trip request selectors
-const tripStartDate = document.querySelector('.start-date')
-const tripEndDate = document.querySelector('.end-date')
-const travelerCount = document.querySelector('.traveler-count')
-const tripDestination = document.querySelector('.destination-list')
-const estimateButton = document.querySelector('.get-estimate')
-
-const tripPreviewTitle = document.querySelector('.trip-preview-title');
-const tripPreviewData = document.querySelector('.trip-preview-data');
-const tripPreviewImage = document.querySelector('.trip-preview-image');
-
 
 // let travelerID = (Math.ceil(Math.random() * 49))
 let travelerID
@@ -82,6 +69,10 @@ const findDuration = (start, end) => {
 }
 
 const returnTripEstimate = (event) => {
+  const tripStartDate = document.querySelector('.start-date')
+  const tripEndDate = document.querySelector('.end-date')
+  const travelerCount = document.querySelector('.traveler-count')
+  const tripDestination = document.querySelector('.destination-list')
   getDestinations()
     .then(destinations => {
     let destinationData = destinations.find(place => {
@@ -107,28 +98,8 @@ const returnTripEstimate = (event) => {
     domUpdates.showTrip(upcomingTripList, newTrip)
     }
   })
-}
+};
 
-
-
-const login = (e) => {
-  e.preventDefault();
-  if (loginName.value.slice(0, 8) === 'traveler' && loginPassword.value === 'travel2020') {
-    travelerID = loginName.value.slice(8, 10)
-    dashboard.classList.toggle('hidden')
-    loginScreen.classList.toggle('hidden')
-    pageLoad();
-  } else if (loginName.value.slice(0, 8) === 'traveler' && loginPassword.value !== 'travel2020') {
-    let warning = document.createElement('p');
-    loginScreen.appendChild(warning)
-    warning.innerText = "Please enter a valid password!"
-  } else if (loginName.value.slice(0, 8) !== 'traveler') {
-    let warning = document.createElement('p');
-    loginScreen.appendChild(warning)
-    warning.innerText = "Please enter a valid username!"
-  }
-}
-
-loginButton.addEventListener('click', login)
+loginButton.addEventListener('click', domUpdates.login)
 dashboard.addEventListener('click', returnTripEstimate)
 window.onload = pageLoad();
