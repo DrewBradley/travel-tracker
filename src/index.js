@@ -33,6 +33,14 @@ const pastTripList = document.querySelector('.past-trips')
 const upcomingTripList = document.querySelector('.future-trips')
 const currentTripList = document.querySelector('.current-trips')
 
+// highlight
+const highlight = document.querySelector('.destination-preview')
+const highlightTitle = document.querySelector('.destination-preview-title')
+const highlightFlight = document.querySelector('.flight-cost')
+const hightlightDaily = document.querySelector('.expense-cost')
+const highlightImage = document.querySelector('.destination-preview-image')
+
+
 // trip request selectors
 const tripStartDate = document.querySelector('.start-date')
 const tripEndDate = document.querySelector('.end-date')
@@ -70,6 +78,7 @@ const pageLoad = () => {
       values[2].forEach(destination => {
         addToDestinationList(destination)
       })
+      displayHighlight(values[2])
       displayTravelerName(traveler);
       displayUserTrips(traveler);
       displayYearlyCost(traveler);
@@ -85,6 +94,20 @@ const addToDestinationList = (destination) => {
   destinationList.appendChild(option);
   option.innerText = `${destination.name}`
   option.setAttribute('value', `${destination.id}`)
+}
+
+const displayHighlight = () => {
+  getDestinations()
+  .then(places => {
+    let highlightPlace = places.find(place => {
+      return place.id === (Math.floor(Math.random() * 50))
+    })
+    highlightTitle.innerText = `${highlightPlace.name}`
+    highlightFlight.innerText = `Flights start at $${highlightPlace.costPerPerson}`
+    hightlightDaily.innerText = `Stay for as little as $${highlightPlace.costPerDay} a day!`
+    highlightImage.setAttribute('src', highlightPlace.image)
+    highlightImage.setAttribute('alt', highlightPlace.altText)
+  })
 }
 
 const showTrip = (parent, trip) => {
@@ -156,7 +179,8 @@ const displayYearlyCost = (traveler) => {
   yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(lastYear).toFixed(2)} in the last year.`
 }
 
-const login = () => {
+const login = (e) => {
+  e.preventDefault();
   if (loginName.value.slice(0, 8) === 'traveler' && loginPassword.value === 'travel2020') {
     travelerID = loginName.value.slice(8, 10)
     dashboard.classList.toggle('hidden')
@@ -175,4 +199,4 @@ const login = () => {
 
 loginButton.addEventListener('click', login)
 dashboard.addEventListener('click', returnTripEstimate)
-// window.onload = pageLoad();
+window.onload = pageLoad();

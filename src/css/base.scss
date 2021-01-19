@@ -87,7 +87,7 @@ body {
       max-width: 80%;
     }
   }
-  .trip-preview {
+  .trip-preview, .destination-preview {
     display: grid;
     text-align: center;
     grid-template-columns: repeat(2, 49%);
@@ -97,14 +97,14 @@ body {
     padding: 2%;
     background-color: lighten($lighterblue, 10%);
     grid-area: 2 / 3 / 2 / 5;
-    .trip-preview-title {
+    .trip-preview-title,  .destination-preview-title{
       margin: 0;
       grid-area: 1 / 1 / 2 / 3;
     }
     .trip-preview-data {
       grid-area: 2 / 1 / 2 / 2;
     }
-    .trip-preview-image {
+    .trip-preview-image, .destination-preview-image {
       max-height: 200px;
       width: 100%;
       grid-area: 2 / 2 / 2 / 3;
