@@ -24,24 +24,24 @@ export const domUpdates = {
     option.setAttribute('value', `${destination.id}`)
   },
 
-  displayHighlight(){
-    const highlightTitle = document.querySelector('.destination-preview-title')
-    const highlightFlight = document.querySelector('.flight-cost')
-    const hightlightDaily = document.querySelector('.expense-cost')
-    const highlightImage = document.querySelector('.destination-preview-image')
-    getDestinations()
-    .then(places => {
-      let highlightPlace = places.find(place => {
-        return place.id === (Math.floor(Math.random() * 10))
-      })
-      highlight.classList.remove('hidden')
-      highlightTitle.innerText = `${highlightPlace.name}`
-      highlightFlight.innerText = `Flights start at $${highlightPlace.costPerPerson}`
-      hightlightDaily.innerText = `Stay for as little as $${highlightPlace.costPerDay} a day!`
-      highlightImage.setAttribute('src', highlightPlace.image)
-      highlightImage.setAttribute('alt', highlightPlace.altText)
-    })
-  },
+  // displayHighlight(){
+  //   const highlightTitle = document.querySelector('.destination-preview-title')
+  //   const highlightFlight = document.querySelector('.flight-cost')
+  //   const hightlightDaily = document.querySelector('.expense-cost')
+  //   const highlightImage = document.querySelector('.destination-preview-image')
+  //   getDestinations()
+  //   .then(places => {
+  //     let highlightPlace = places.find(place => {
+  //       return place.id === (Math.floor(Math.random() * 10))
+  //     })
+  //     highlight.classList.remove('hidden')
+  //     highlightTitle.innerText = `${highlightPlace.name}`
+  //     highlightFlight.innerText = `Flights start at $${highlightPlace.costPerPerson}`
+  //     hightlightDaily.innerText = `Stay for as little as $${highlightPlace.costPerDay} a day!`
+  //     highlightImage.setAttribute('src', highlightPlace.image)
+  //     highlightImage.setAttribute('alt', highlightPlace.altText)
+  //   })
+  // },
 
   showTrip(parent, trip){
     let li = document.createElement('li');

@@ -101,6 +101,6 @@ const returnTripEstimate = (event) => {
 };
 
 loginButton.addEventListener('click', domUpdates.login)
-highlight.addEventListener('click', domUpdates.displayHighlight)
+// highlight.addEventListener('click', domUpdates.displayHighlight)
 dashboard.addEventListener('click', returnTripEstimate)
 window.onload = pageLoad();

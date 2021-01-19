@@ -17,8 +17,9 @@ $logo-font: 'Wire One', sans-serif;
 
 body {
   background-repeat: no-repeat;
-  background-size: auto;
-  background: $primary-background;
+  background-size: cover;
+  background-image: url('../images/fjord.jpg'); 
+  background-color: $lighterblue;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: $fontblue;
   font-weight: 800;
