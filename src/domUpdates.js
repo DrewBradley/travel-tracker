@@ -4,6 +4,10 @@ import {
 
 const tripPreview = document.querySelector('.trip-preview');
 const highlight = document.querySelector('.destination-preview')
+const pastTripList = document.querySelector('.past-trips')
+const upcomingTripList = document.querySelector('.future-trips')
+const currentTripList = document.querySelector('.current-trips')
+const tripPreviewTitle = document.querySelector('.trip-preview-title');
 
 export const domUpdates = {
   
@@ -47,9 +51,6 @@ export const domUpdates = {
 
   displayUserTrips(traveler){
     traveler.trips.forEach(trip => {
-      const pastTripList = document.querySelector('.past-trips')
-      const upcomingTripList = document.querySelector('.future-trips')
-      const currentTripList = document.querySelector('.current-trips')
       if (trip.happeningData === 'past') {
         this.showTrip(pastTripList, trip);
       } else if (trip.happeningData === 'upcoming') {
@@ -67,10 +68,9 @@ export const domUpdates = {
   },
   
   displayEstimate(newTrip, destinationData) {
+    this.checkFields();
     tripPreview.classList.remove('hidden')
     highlight.classList.add('hidden')
-    console.log(destinationData)
-    const tripPreviewTitle = document.querySelector('.trip-preview-title');
     const tripPreviewDestination = document.querySelector('.trip-preview-destination');
     const tripPreviewDeparture = document.querySelector('.trip-preview-leaving');
     const tripPreviewDuration = document.querySelector('.trip-preview-duration');
@@ -104,5 +104,20 @@ export const domUpdates = {
       warning.innerText = "Please enter a valid username!"
     }
   },
+
+  checkFields() {
+    const tripStartDate = document.querySelector('.start-date')
+    const tripEndDate = document.querySelector('.end-date')
+    const travelerCount = document.querySelector('.traveler-count')
+    const tripDestination = document.querySelector('.destination-list')
+    const bookItButton = document.querySelector('.book-trip');
+    console.log(travelerCount.value.length)
+    if (tripStartDate.value && tripEndDate.value && travelerCount.value) {
+      bookItButton.classList.remove('hidden')
+      return
+    } else {
+      tripPreviewTitle.innerText = "Please fill out form completely!"
+    }
+  }
 
 }
