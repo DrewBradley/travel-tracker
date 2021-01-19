@@ -19,15 +19,27 @@ import {
 let today = new Date().toISOString().slice(0,10).replaceAll("-", "/")
 let lastYear = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().slice(0,10).replaceAll("-", "/");
 
+// login
+const loginScreen = document.querySelector('.login-dashboard');
+const loginName = document.querySelector('#login-user-name');
+const loginPassword = document.querySelector('#login-password');
+const loginButton = document.querySelector('.login-button');
+
+// dashboard
 const dashboard = document.querySelector('.dashboard')
 const dashboardGreeting = document.querySelector('.dashboard-greeting')
 const destinationList = document.querySelector('.destination-list')
-const pastTrips = document.querySelector('.dashboard-trips-past')
-const upcomingTrips = document.querySelector('.dashboard-trips-future')
-const currentTrips = document.querySelector('.dashboard-trips-present')
 const pastTripList = document.querySelector('.past-trips')
 const upcomingTripList = document.querySelector('.future-trips')
 const currentTripList = document.querySelector('.current-trips')
+
+// highlight
+const highlight = document.querySelector('.destination-preview')
+const highlightTitle = document.querySelector('.destination-preview-title')
+const highlightFlight = document.querySelector('.flight-cost')
+const hightlightDaily = document.querySelector('.expense-cost')
+const highlightImage = document.querySelector('.destination-preview-image')
+
 
 // trip request selectors
 const tripStartDate = document.querySelector('.start-date')
@@ -40,12 +52,13 @@ const tripPreviewTitle = document.querySelector('.trip-preview-title');
 const tripPreviewData = document.querySelector('.trip-preview-data');
 const tripPreviewImage = document.querySelector('.trip-preview-image');
 const yearCost = document.querySelector('.dashboard-year-cost');
-// let rando = (Math.ceil(Math.random() * 49))
-let rando = (1)
+
+// let travelerID = (Math.ceil(Math.random() * 49))
+let travelerID
 
 const pageLoad = () => {
 
-  const travelerResults = getTraveler(rando)
+  const travelerResults = getTraveler(travelerID)
   const tripsResults = getTrips()
   const placeResults = getDestinations()
     
@@ -65,9 +78,10 @@ const pageLoad = () => {
       values[2].forEach(destination => {
         addToDestinationList(destination)
       })
+      displayHighlight(values[2])
       displayTravelerName(traveler);
-      displayUserTrips(traveler)
-      displayYearlyCost(traveler)
+      displayUserTrips(traveler);
+      displayYearlyCost(traveler);
     })
 }
 
@@ -82,6 +96,20 @@ const addToDestinationList = (destination) => {
   option.setAttribute('value', `${destination.id}`)
 }
 
+const displayHighlight = () => {
+  getDestinations()
+  .then(places => {
+    let highlightPlace = places.find(place => {
+      return place.id === (Math.floor(Math.random() * 50))
+    })
+    highlightTitle.innerText = `${highlightPlace.name}`
+    highlightFlight.innerText = `Flights start at $${highlightPlace.costPerPerson}`
+    hightlightDaily.innerText = `Stay for as little as $${highlightPlace.costPerDay} a day!`
+    highlightImage.setAttribute('src', highlightPlace.image)
+    highlightImage.setAttribute('alt', highlightPlace.altText)
+  })
+}
+
 const showTrip = (parent, trip) => {
     let li = document.createElement('li');
     parent.appendChild(li);
@@ -89,7 +117,6 @@ const showTrip = (parent, trip) => {
 };
 
 const displayUserTrips = (traveler) => {
-  console.log(traveler.trips.length)
   traveler.trips.forEach(trip => {
     if (trip.happeningData === 'past') {
       showTrip(pastTripList, trip);
@@ -111,8 +138,7 @@ const displayEstimate = (newTrip, destinationData) => {
   tripPreviewTitle.innerText = `Your trip to ${destinationData.name}`
   tripPreviewData.innerHTML = `
   <p class="destination">Destination ${destinationData.name}</p>
-  <p class="leaving">Departing on: ${newTrip.duration}</p>
-  <p class="returning">Returning on: ${newTrip.duration}</p>
+  <p class="leaving">Departing on: ${newTrip.date}</p>
   <p class="duration">Duration ${newTrip.duration}</p>
   <p class="total-cost">Cost: $${newTrip.calculateTotalCost()}</p>
   <button class="book-trip">Book It!</button>`
@@ -131,7 +157,7 @@ const returnTripEstimate = (event) => {
     let duration = findDuration(start, end);
     let newTrip = new Trip({
       "id": Date.now(),
-      "userID": rando,
+      "userID": travelerID,
       "destinationID": parseInt(tripDestination.value),
       "travelers": parseInt(travelerCount.value),
       "date": start.replaceAll("-", "/"),
@@ -149,8 +175,28 @@ const returnTripEstimate = (event) => {
 }
 
 const displayYearlyCost = (traveler) => {
-  yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(today, lastYear).toFixed(2)} in the last year.`
+  console.log(traveler.findYearlyTravelCost(lastYear))
+  yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(lastYear).toFixed(2)} in the last year.`
 }
 
+const login = (e) => {
+  e.preventDefault();
+  if (loginName.value.slice(0, 8) === 'traveler' && loginPassword.value === 'travel2020') {
+    travelerID = loginName.value.slice(8, 10)
+    dashboard.classList.toggle('hidden')
+    loginScreen.classList.toggle('hidden')
+    pageLoad();
+  } else if (loginName.value.slice(0, 8) === 'traveler' && loginPassword.value !== 'travel2020') {
+    let warning = document.createElement('p');
+    loginScreen.appendChild(warning)
+    warning.innerText = "Please enter a valid password!"
+  } else if (loginName.value.slice(0, 8) !== 'traveler') {
+    let warning = document.createElement('p');
+    loginScreen.appendChild(warning)
+    warning.innerText = "Please enter a valid username!"
+  }
+}
+
+loginButton.addEventListener('click', login)
 dashboard.addEventListener('click', returnTripEstimate)
 window.onload = pageLoad();

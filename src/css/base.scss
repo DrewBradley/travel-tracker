@@ -25,7 +25,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .nav {
@@ -39,6 +39,16 @@ body {
   }
 }
 
+.login-dashboard {
+  margin: auto;
+  margin-top: 10%;
+  text-align: center;
+  width: 200px;
+  box-shadow: $box-shadow;
+  padding: 2%;
+  background-color: rgba($accent-tan, .5);
+}
+
 .dashboard {
   background-color: rgba($accent-tan, .5);
   height: 80vh;
@@ -47,11 +57,13 @@ body {
   grid-template-columns: repeat(4, 24%);
   grid-row: 65% 30%;
   grid-gap: 1%;
+  
   .dashboard-greeting {
     font-size: 3rem;
     margin: 0;
     text-align: center;
   }
+  
   .dashboard-trips {
     box-shadow: $box-shadow;
     padding: 2%;
@@ -60,6 +72,7 @@ body {
     background-color: lighten($lighterblue, 10%);
     grid-area: 1 / 1 / 2 / 4;
   }
+  
   .dashboard-request-form {
     display: flex;
     box-shadow: $box-shadow;
@@ -69,8 +82,12 @@ body {
     padding: 2%;
     background-color: lighten($lighterblue, 10%);
     grid-area: 1 / 4 / 1 / 4;
+
+    .destination-list {
+      max-width: 80%;
+    }
   }
-  .trip-preview {
+  .trip-preview, .destination-preview {
     display: grid;
     text-align: center;
     grid-template-columns: repeat(2, 49%);
@@ -80,14 +97,14 @@ body {
     padding: 2%;
     background-color: lighten($lighterblue, 10%);
     grid-area: 2 / 3 / 2 / 5;
-    .trip-preview-title {
+    .trip-preview-title,  .destination-preview-title{
       margin: 0;
       grid-area: 1 / 1 / 2 / 3;
     }
     .trip-preview-data {
       grid-area: 2 / 1 / 2 / 2;
     }
-    .trip-preview-image {
+    .trip-preview-image, .destination-preview-image {
       max-height: 200px;
       width: 100%;
       grid-area: 2 / 2 / 2 / 3;
