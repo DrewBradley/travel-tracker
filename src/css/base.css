@@ -1,43 +1,102 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
 @import url("https://fonts.googleapis.com/css2?family=Wire+One&display=swap");
 body {
-  background: radial-gradient(circle, #b3dcff 0%, #5ecc62 100%);
-  font-family: "Wire One", sans-serif;
+  background: radial-gradient(circle, #747ba1 0%, #ffba77 100%);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #242a3a;
   font-weight: 800;
+  margin: 0;
+}
+
+:required {
+  background: #ffba77;
+}
+
+input {
+  cursor: pointer;
+}
+
+button {
+  margin: 5%;
+  background-color: #e2854c;
+  border: 0;
+  height: 2rem;
+  font-size: 1rem;
+  -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+          box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+  cursor: pointer;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "Wire One", sans-serif;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 2rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.nav h1 {
+  margin: 0;
+}
+
+.login-dashboard {
+  margin: auto;
+  margin-top: 10%;
+  text-align: center;
+  width: 200px;
+  -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+          box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+  padding: 2%;
+  background-color: rgba(255, 186, 119, 0.5);
 }
 
 .dashboard {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 186, 119, 0.5);
+  height: 80vh;
   padding: 1%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 40% 55%;
-      grid-template-columns: 40% 55%;
+  -ms-grid-columns: (24%)[4];
+      grid-template-columns: repeat(4, 24%);
   grid-row: 65% 30%;
-  grid-gap: 5%;
+  grid-gap: 1%;
+}
+
+.dashboard .dashboard-greeting {
+  font-size: 3rem;
+  margin: 0;
+  text-align: center;
 }
 
 .dashboard .dashboard-trips {
+  -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+          box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
   padding: 2%;
-  height: 300px;
+  height: auto;
   width: auto;
-  background-color: #b3dcff;
-  border-radius: 10px;
+  background-color: rgba(191, 224, 234, 0.7);
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
-  grid-area: 1 / 1 / 2 / 2;
+  -ms-grid-column-span: 3;
+  grid-area: 1 / 1 / 2 / 4;
 }
 
 .dashboard .dashboard-request-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+          box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -49,21 +108,99 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding: 2%;
-  background-color: #b3dcff;
-  border-radius: 10px;
+  background-color: rgba(191, 224, 234, 0.7);
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: 1 / 4 / 1 / 4;
+}
+
+.dashboard .dashboard-request-form .destination-list {
+  max-width: 80%;
+}
+
+.dashboard .trip-preview, .dashboard .destination-preview {
+  display: -ms-grid;
+  display: grid;
+  text-align: center;
+  -ms-grid-columns: (49%)[2];
+      grid-template-columns: repeat(2, 49%);
+  grid-row: 9% 90%;
+  grid-gap: 1%;
+  -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+          box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+  padding: 2%;
+  background-color: rgba(191, 224, 234, 0.7);
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
+  grid-area: 2 / 3 / 2 / 5;
+}
+
+.dashboard .trip-preview .trip-preview-title, .dashboard .trip-preview .destination-preview-title, .dashboard .destination-preview .trip-preview-title, .dashboard .destination-preview .destination-preview-title {
+  margin: 0;
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: 1 / 1 / 2 / 3;
+}
+
+.dashboard .trip-preview .trip-preview-data, .dashboard .destination-preview .trip-preview-data {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-area: 2 / 1 / 2 / 2;
+}
+
+.dashboard .trip-preview .trip-preview-image, .dashboard .trip-preview .destination-preview-image, .dashboard .destination-preview .trip-preview-image, .dashboard .destination-preview .destination-preview-image {
+  max-height: 200px;
+  width: 100%;
+  -ms-grid-row: 2;
   -ms-grid-column: 2;
-  grid-area: 1 / 2 / 2 / 2;
+  -ms-grid-column-span: 1;
+  grid-area: 2 / 2 / 2 / 3;
 }
 
 .dashboard .dashboard-year-review {
+  -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+          box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
   padding: 2%;
-  background-color: #b3dcff;
-  border-radius: 10px;
+  background-color: rgba(191, 224, 234, 0.7);
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: 2 / 1 / 2 / 3;
+}
+
+@media only screen and (max-width: 450px) {
+  .login-dashboard {
+    width: 90%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .dashboard {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+    grid-row: auto;
+    height: auto;
+  }
+  .dashboard .dashboard-trips {
+    grid-area: auto;
+  }
+  .dashboard .dashboard-request-form {
+    grid-area: auto;
+    font-size: 2rem;
+  }
+  .dashboard .trip-preview, .dashboard .destination-preview {
+    grid-area: auto;
+  }
+  .dashboard .dashboard-year-review {
+    grid-area: auto;
+  }
 }
 /*# sourceMappingURL=base.css.map */

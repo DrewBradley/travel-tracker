@@ -1,0 +1,28 @@
+@media only screen and (max-width: 450px) {
+  .login-dashboard {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  .dashboard {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row: auto;
+    height: auto;
+    .dashboard-trips {
+      grid-area: auto;
+    }
+    .dashboard-request-form {
+      grid-area: auto;
+      font-size: 2rem;
+    }
+    .trip-preview, .destination-preview {
+      grid-area: auto;
+    }
+    .dashboard-year-review {
+      grid-area: auto;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+}

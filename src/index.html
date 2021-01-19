@@ -2,6 +2,7 @@
 <html lang="en-US">
   <head>
     <title>ExcursiOnward</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body style="background-image: url('./images/map-background.jpg')">
     <header class="nav">
@@ -37,13 +38,13 @@
       <section class="dashboard-request-form">
         <h2>Book A Trip!</h2>
         <label for="start-date">Leave On:</label>
-        <input class="start-date" type="date">
+        <input class="start-date" type="date" required>
         <label for="end-date">Return On:</label>
-        <input class="end-date" type="date">
+        <input class="end-date" type="date" required>
         <label for="traveler-count">How Many Travelers?</label>
-        <input class="traveler-count" type="number" min=1 max=20>
+        <input class="traveler-count" type="number" min=1 max=20 required>
         <label for="destinations">Where Do You Want To Go?</label>
-        <select class="destination-list" name="" id="">
+        <select class="destination-list" name="" id="" required>
           <option placeholder="choose a destination">choose a destination</option>
         </select>
         <button class="get-estimate">Get Cost Estimate</button>

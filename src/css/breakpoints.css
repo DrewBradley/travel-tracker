@@ -1,0 +1,17 @@
+@media only screen and (max-width: 450px) {
+  .dashboard {
+    -ms-grid-columns: auto;
+        grid-template-columns: auto;
+    grid-row: auto;
+  }
+  .dashboard-trips {
+    grid-area: auto;
+  }
+  .dashboard-request-form {
+    grid-area: auto;
+  }
+  .trip-preview, .destination-preview {
+    grid-area: auto;
+  }
+}
+/*# sourceMappingURL=breakpoints.css.map */
