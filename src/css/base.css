@@ -250,4 +250,30 @@ button {
     grid-area: auto;
   }
 }
+
+@media only screen and (max-width: 780px) {
+  .dashboard {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+    grid-row: auto;
+    height: auto;
+  }
+  .dashboard .dashboard-trips {
+    -ms-grid-row: 1;
+    grid-area: 1;
+  }
+  .dashboard .dashboard-request-form {
+    -ms-grid-row: 2;
+    grid-area: 2;
+    font-size: 1rem;
+  }
+  .dashboard .trip-preview, .dashboard .destination-preview {
+    -ms-grid-row: 4;
+    grid-area: 4;
+  }
+  .dashboard .dashboard-year-review {
+    -ms-grid-row: 3;
+    grid-area: 3;
+  }
+}
 /*# sourceMappingURL=base.css.map */
