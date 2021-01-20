@@ -10,7 +10,7 @@
       <h1>ExcursiOnward</h1>
     </header>
 
-    <section class="login-dashboard hidden">
+    <section class="login-dashboard">
       <label for="login-user-name">Username</label>
       <input type="text" name="login-user-name" id="login-user-name">
       <label for="login-password">Password</label>
@@ -18,7 +18,7 @@
       <button class="login-button">Log In!</button>
     </section>
 
-    <main class="dashboard">
+    <main class="dashboard hidden">
       <section class="dashboard-trips">
         <h1 class="dashboard-greeting"></h1>
         <article class="dashboard-trips-past">
@@ -51,23 +51,21 @@
       </section>
 
       <section class="dashboard-year-review">
-        <h2 class="dashboard-year-cost"></h2>
-        <p>View 2021 travel spending.</p>
-        <p>View 2020 travel spending.</p>
-        <p>View 2019 travel spending.</p>
-      </section>
-
-      <section class="destination-preview" aria-label="Destination Spotlight">
-        <h2 class="destination-preview-title">Destination Preview</h2>
-        <article class="trip-preview-data">
-          <p class="flight-cost"></p>
-          <p class="expense-cost"></p>
+        <article class="yearly-spending">
+          <p>You have spent</p>
+          <h2 class="dashboard-year-cost"></h2>
+          <p>in the last year!</p>
         </article>
-        <img class="destination-preview-image" src="" alt="">
-        <button class="destination-preview-button">see a new destination</button>
+        <p>View 2021 travel spending.</p>
+        <p>View other years.</p>
       </section>
 
-      <section class="trip-preview hidden">
+      <section class="dashboard-message" aria-label="Dashboard Message">
+        <h1 class="destination-preview-title">ExcursiOnward</h1>
+        <p class="destination-preview-message">where adventure starts</p>
+      </section>
+
+      <section class="trip-preview hidden" aria-label="Trip Preview">
         <h2 class="trip-preview-title">Trip Preview</h2>
         <article class="trip-preview-data">
           <p class="trip-preview-destination"></p>

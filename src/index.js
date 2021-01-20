@@ -11,9 +11,7 @@ import {
   getTraveler,
   getTrips,
   getDestinations,
-  addTrip,
-  updateTrip,
-  deleteTrip
+  addTrip
 } from './utility.js';
 
 import {
@@ -35,8 +33,8 @@ const tripEndDate = document.querySelector('.end-date')
 const travelerCount = document.querySelector('.traveler-count')
 const tripDestination = document.querySelector('.destination-list')
 
-let travelerID = (Math.ceil(Math.random() * 49))
-// let travelerID
+// let travelerID = (Math.ceil(Math.random() * 49))
+let travelerID
 
 const pageLoad = () => {
 
@@ -96,11 +94,32 @@ const returnTripEstimate = (event) => {
     } else if (event.target.classList.contains('book-trip')) {
     addTrip(newTrip)
     domUpdates.showTrip(upcomingTripList, newTrip)
+    domUpdates.showSuccessPost(newTrip)
     }
   })
 };
 
-loginButton.addEventListener('click', domUpdates.login)
+const login = () => {
+  const loginScreen = document.querySelector('.login-dashboard');
+  const loginName = document.querySelector('#login-user-name');
+  const loginPassword = document.querySelector('#login-password');
+  if (loginName.value.slice(0, 8) === 'traveler' && loginPassword.value === 'travel2020') {
+    travelerID = loginName.value.slice(8, 10)
+    pageLoad();
+    dashboard.classList.toggle('hidden')
+    loginScreen.classList.toggle('hidden')   
+  } else if (loginName.value.slice(0, 8) === 'traveler' && loginPassword.value !== 'travel2020') {
+    let warning = document.createElement('p');
+    loginScreen.appendChild(warning)
+    warning.innerText = "Please enter a valid password!"
+  } else if (loginName.value.slice(0, 8) !== 'traveler') {
+    let warning = document.createElement('p');
+    loginScreen.appendChild(warning)
+    warning.innerText = "Please enter a valid username!"
+  }
+}
+
+loginButton.addEventListener('click', login)
 // highlight.addEventListener('click', domUpdates.displayHighlight)
 dashboard.addEventListener('click', returnTripEstimate)
-window.onload = pageLoad();
+// window.onload = pageLoad();

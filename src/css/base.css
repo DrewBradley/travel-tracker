@@ -1,18 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Wire+One&display=swap");
 body {
-  background: radial-gradient(circle, #747ba1 0%, #ffba77 100%);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url("../images/background-image.png");
+  background-color: rgba(199, 226, 234, 0.7);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: #242a3a;
   font-weight: 800;
   margin: 0;
 }
 
-:required {
-  background: #ffba77;
+ul:before {
+  content: attr(aria-label);
+  font-size: 120%;
+  font-weight: 800;
+  margin-left: -15px;
 }
 
 input {
   cursor: pointer;
+  background: white;
 }
 
 button {
@@ -23,6 +30,7 @@ button {
   font-size: 1rem;
   -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
           box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -56,11 +64,11 @@ button {
   -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
           box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
   padding: 2%;
-  background-color: rgba(255, 186, 119, 0.5);
+  background-color: rgba(247, 224, 201, 0.5);
 }
 
 .dashboard {
-  background-color: rgba(255, 186, 119, 0.5);
+  background-color: rgba(247, 224, 201, 0.5);
   height: 80vh;
   padding: 1%;
   display: -ms-grid;
@@ -80,10 +88,11 @@ button {
 .dashboard .dashboard-trips {
   -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
           box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+  border-radius: 5px;
   padding: 2%;
   height: auto;
   width: auto;
-  background-color: rgba(191, 224, 234, 0.7);
+  background-color: rgba(236, 245, 248, 0.7);
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
   -ms-grid-column: 1;
@@ -92,6 +101,7 @@ button {
 }
 
 .dashboard .dashboard-request-form {
+  border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -108,17 +118,34 @@ button {
       -ms-flex-align: center;
           align-items: center;
   padding: 2%;
-  background-color: rgba(191, 224, 234, 0.7);
+  background-color: rgba(236, 245, 248, 0.7);
   -ms-grid-row: 1;
   -ms-grid-column: 4;
   grid-area: 1 / 4 / 1 / 4;
+}
+
+.dashboard .dashboard-request-form h2 {
+  margin: 0;
 }
 
 .dashboard .dashboard-request-form .destination-list {
   max-width: 80%;
 }
 
-.dashboard .trip-preview, .dashboard .destination-preview {
+.dashboard .dashboard-message {
+  text-align: center;
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
+  grid-area: 2 / 3 / 2 / 5;
+  -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+          box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+  padding: 2%;
+  background-color: rgba(236, 245, 248, 0.7);
+}
+
+.dashboard .trip-preview {
+  border-radius: 5px;
   display: -ms-grid;
   display: grid;
   text-align: center;
@@ -129,14 +156,15 @@ button {
   -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
           box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
   padding: 2%;
-  background-color: rgba(191, 224, 234, 0.7);
+  background-color: rgba(236, 245, 248, 0.7);
   -ms-grid-row: 2;
   -ms-grid-column: 3;
   -ms-grid-column-span: 2;
   grid-area: 2 / 3 / 2 / 5;
 }
 
-.dashboard .trip-preview .trip-preview-title, .dashboard .trip-preview .destination-preview-title, .dashboard .destination-preview .trip-preview-title, .dashboard .destination-preview .destination-preview-title {
+.dashboard .trip-preview .trip-preview-title, .dashboard .trip-preview .destination-preview-title {
+  cursor: pointer;
   margin: 0;
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
@@ -145,14 +173,14 @@ button {
   grid-area: 1 / 1 / 2 / 3;
 }
 
-.dashboard .trip-preview .trip-preview-data, .dashboard .destination-preview .trip-preview-data {
+.dashboard .trip-preview .trip-preview-data {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-area: 2 / 1 / 2 / 2;
 }
 
-.dashboard .trip-preview .trip-preview-image, .dashboard .trip-preview .destination-preview-image, .dashboard .destination-preview .trip-preview-image, .dashboard .destination-preview .destination-preview-image {
+.dashboard .trip-preview .trip-preview-image, .dashboard .trip-preview .destination-preview-image {
   max-height: 200px;
   width: 100%;
   -ms-grid-row: 2;
@@ -162,14 +190,45 @@ button {
 }
 
 .dashboard .dashboard-year-review {
+  border-radius: 5px;
   -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
           box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
   padding: 2%;
-  background-color: rgba(191, 224, 234, 0.7);
+  background-color: rgba(236, 245, 248, 0.7);
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: 2 / 1 / 2 / 3;
+}
+
+.dashboard .dashboard-year-review p {
+  margin: 0;
+}
+
+.dashboard .dashboard-year-review .yearly-spending {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 10%;
+}
+
+.dashboard .dashboard-year-review .yearly-spending h2, .dashboard .dashboard-year-review .yearly-spending p {
+  margin: 1%;
+}
+
+.dashboard .dashboard-year-review .yearly-spending h2 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2rem;
 }
 
 @media only screen and (max-width: 450px) {
@@ -194,13 +253,39 @@ button {
   }
   .dashboard .dashboard-request-form {
     grid-area: auto;
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
-  .dashboard .trip-preview, .dashboard .destination-preview {
+  .dashboard .trip-preview, .dashboard .dashboard-message {
     grid-area: auto;
   }
   .dashboard .dashboard-year-review {
     grid-area: auto;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .dashboard {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+    grid-row: auto;
+    height: auto;
+  }
+  .dashboard .dashboard-trips {
+    -ms-grid-row: 1;
+    grid-area: 1;
+  }
+  .dashboard .dashboard-request-form {
+    -ms-grid-row: 2;
+    grid-area: 2;
+    font-size: 1rem;
+  }
+  .dashboard .trip-preview, .dashboard .dashboard-message {
+    -ms-grid-row: 4;
+    grid-area: 4;
+  }
+  .dashboard .dashboard-year-review {
+    -ms-grid-row: 3;
+    grid-area: 3;
   }
 }
 /*# sourceMappingURL=base.css.map */
