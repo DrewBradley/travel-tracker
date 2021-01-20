@@ -64,7 +64,7 @@ export const domUpdates = {
   displayYearlyCost(traveler) {
     let lastYear = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().slice(0,10).replaceAll("-", "/")
     const yearCost = document.querySelector('.dashboard-year-cost');
-    yearCost.innerText = `You have spent $${traveler.findYearlyTravelCost(lastYear).toFixed(2)} in the last year.`
+    yearCost.innerText = `$${traveler.findYearlyTravelCost(lastYear).toFixed(2)}`
   },
   
   displayEstimate(newTrip, destinationData) {
