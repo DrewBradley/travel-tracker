@@ -1,7 +1,7 @@
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import './images/ExcursiOnward-logo.png'
-import './images/fjord.jpg'
+import './images/background-image.png'
 
 import Trip from './Trips';
 import Traveler from './Traveler'
