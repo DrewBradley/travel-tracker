@@ -120,6 +120,7 @@ button {
   }
 
   .dashboard-message {
+    border-radius: $rounded;
     text-align: center;
     grid-area: 2 / 3 / 2 / 5;
     box-shadow: $box-shadow;
