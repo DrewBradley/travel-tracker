@@ -19,13 +19,13 @@ class Trip {
   }
 
   whenIsThisTrip(today) {
-    let endDate = this.findTripEndDate().replaceAll("-", "/")
+    let endDate = this.findTripEndDate().replace(/-/g, '/')
     let startDate = this.date;
-    if (endDate > today && startDate < today) {
+    if (endDate > today && this.date < today) {
       this.happeningData = 'current';
     } else if (endDate < today) {
       this.happeningData = 'past';
-    } else if (this.date > today) {
+    } else {
       this.happeningData = 'upcoming';
     }
   }

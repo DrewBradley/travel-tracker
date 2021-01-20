@@ -1,11 +1,7 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-import { testTravelers } from '../test-data/test-traveler-data'
-import { testTrips } from '../test-data/test-trip-data'
 import { testDestinations } from '../test-data/test-destination-data'
-import Traveler from '../src/Traveler';
-import Trips from '../src/Trips';
 import Destination from '../src/Destination'
 
 describe('Destination', function() {
@@ -30,13 +26,8 @@ describe('Destination', function() {
   });
 
   it('should contain estimated cost details', function() {
-<<<<<<< Updated upstream
     expect(destination1.costPerDay).to.eql(70);
     expect(destination2.costPerPerson).to.eql(780);
-=======
-    expect(destination1.costPerDay).to.eql(3);
-    expect(destination2.costPerPerson).to.eql("Cartagena, Colombia");
->>>>>>> Stashed changes
   });
 
 });
