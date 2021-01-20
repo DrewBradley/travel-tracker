@@ -1,5 +1,3 @@
-import Trip from "./Trips";
-
 class Traveler {
   constructor(traveler) {
     this.id = traveler.id;
@@ -19,7 +17,7 @@ class Traveler {
 
   findYearlyTravelCost(lastYear) {
     return this.trips.reduce((total, trip) => {
-      if (lastYear > trip.findTripEndDate()) {
+      if (lastYear < trip.findTripEndDate().replace(/-/g, '/')) {
         total += trip.calculateTotalCost()
       }
       return total

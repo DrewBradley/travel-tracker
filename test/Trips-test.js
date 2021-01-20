@@ -5,10 +5,10 @@ import { testTravelers } from '../test-data/test-traveler-data'
 import { testTrips } from '../test-data/test-trip-data'
 import { testDestinations } from '../test-data/test-destination-data'
 import Traveler from '../src/Traveler';
-import Trips from '../src/Trips';
+import Trip from '../src/Trips';
 import Destination from '../src/Destination'
 
-describe('Trips', function() {
+describe('Trip', function() {
   let traveler1, traveler2, trip1, trip2, trip3, trip4, trip5, destination1, destination2, destination3, destination4, destination5
   beforeEach(() => {
     traveler1 = new Traveler(testTravelers[0]);
@@ -18,18 +18,18 @@ describe('Trips', function() {
     destination3 = new Destination(testDestinations[2]);
     destination4 = new Destination(testDestinations[3]); 
     destination5 = new Destination(testDestinations[4]);
-    trip1 = new Trips(testTrips[0], destination4);
-    trip2 = new Trips(testTrips[1], destination3);
-    trip3 = new Trips(testTrips[2], destination2);
-    trip4 = new Trips(testTrips[3], destination5); 
-    trip5 = new Trips(testTrips[4], destination4);
+    trip1 = new Trip(testTrips[0], destination4);
+    trip2 = new Trip(testTrips[1], destination3);
+    trip3 = new Trip(testTrips[2], destination2);
+    trip4 = new Trip(testTrips[3], destination5); 
+    trip5 = new Trip(testTrips[4], destination4);
   });
   
-  it('should be an instance of Trips', function() {
-    expect(trip1).to.be.an.instanceof(Trips);
-    expect(trip2).to.be.an.instanceof(Trips);
-    expect(trip3).to.be.an.instanceof(Trips);
-    expect(trip4).to.be.an.instanceof(Trips);
+  it('should be an instance of Trip', function() {
+    expect(trip1).to.be.an.instanceof(Trip);
+    expect(trip2).to.be.an.instanceof(Trip);
+    expect(trip3).to.be.an.instanceof(Trip);
+    expect(trip4).to.be.an.instanceof(Trip);
   });
 
   it('should have a an id', function() {
@@ -47,7 +47,7 @@ describe('Trips', function() {
   });
 
   it('should be able to tell if the trip has happened', function() {
-    let today = '2020-06-08';
+    let today = '2020/06/08';
     trip3.whenIsThisTrip(today)
     trip1.whenIsThisTrip(today)
     trip5.whenIsThisTrip(today)
