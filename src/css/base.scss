@@ -118,7 +118,16 @@ button {
       max-width: 80%;
     }
   }
-  .trip-preview, .destination-preview {
+
+  .dashboard-message {
+    text-align: center;
+    grid-area: 2 / 3 / 2 / 5;
+    box-shadow: $box-shadow;
+    padding: 2%;
+    background-color: lighten($lighterblue, 10%);
+  }
+
+  .trip-preview {
     border-radius: $rounded;
     display: grid;
     text-align: center;
@@ -129,14 +138,17 @@ button {
     padding: 2%;
     background-color: lighten($lighterblue, 10%);
     grid-area: 2 / 3 / 2 / 5;
+    
     .trip-preview-title,  .destination-preview-title{
       cursor: pointer;
       margin: 0;
       grid-area: 1 / 1 / 2 / 3;
     }
+
     .trip-preview-data {
       grid-area: 2 / 1 / 2 / 2;
     }
+
     .trip-preview-image, .destination-preview-image {
       max-height: 200px;
       width: 100%;
@@ -150,18 +162,22 @@ button {
     padding: 2%;
     background-color: lighten($lighterblue, 10%);
     grid-area: 2 / 1 / 2 / 3;
+    
     p {
       margin: 0;
     }
+    
     .yearly-spending {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       margin-bottom: 10%;
+      
       h2, p {
         margin: 1%;
       }
+      
       h2 {
         font-family:'Courier New', Courier, monospace;
         font-size: 2rem;

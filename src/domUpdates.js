@@ -1,16 +1,12 @@
-import {
-  getDestinations,
-} from './utility.js';
-
 const tripPreview = document.querySelector('.trip-preview');
-const highlight = document.querySelector('.destination-preview')
+const highlight = document.querySelector('.dashboard-message')
 const pastTripList = document.querySelector('.past-trips')
 const upcomingTripList = document.querySelector('.future-trips')
 const currentTripList = document.querySelector('.current-trips')
 const tripPreviewTitle = document.querySelector('.trip-preview-title');
+const dashboard = document.querySelector('.dashboard')
 
 export const domUpdates = {
-  
   displayTravelerName(traveler){
     const dashboardGreeting = document.querySelector('.dashboard-greeting')
     dashboardGreeting.innerText = "Hello, " + (traveler.returnFirstNameLastInitial())
@@ -23,25 +19,6 @@ export const domUpdates = {
     option.innerText = `${destination.name}`
     option.setAttribute('value', `${destination.id}`)
   },
-
-  // displayHighlight(){
-  //   const highlightTitle = document.querySelector('.destination-preview-title')
-  //   const highlightFlight = document.querySelector('.flight-cost')
-  //   const hightlightDaily = document.querySelector('.expense-cost')
-  //   const highlightImage = document.querySelector('.destination-preview-image')
-  //   getDestinations()
-  //   .then(places => {
-  //     let highlightPlace = places.find(place => {
-  //       return place.id === (Math.floor(Math.random() * 10))
-  //     })
-  //     highlight.classList.remove('hidden')
-  //     highlightTitle.innerText = `${highlightPlace.name}`
-  //     highlightFlight.innerText = `Flights start at $${highlightPlace.costPerPerson}`
-  //     hightlightDaily.innerText = `Stay for as little as $${highlightPlace.costPerDay} a day!`
-  //     highlightImage.setAttribute('src', highlightPlace.image)
-  //     highlightImage.setAttribute('alt', highlightPlace.altText)
-  //   })
-  // },
 
   showTrip(parent, trip){
     let li = document.createElement('li');
@@ -84,26 +61,6 @@ export const domUpdates = {
     tripPreviewDuration.innerHTML = `Duration ${newTrip.duration}`
     tripPreviewTotalCost.innerHTML = `Cost: $${newTrip.calculateTotalCost()}`
   },
-  
-  login() {
-    const loginScreen = document.querySelector('.login-dashboard');
-    const loginName = document.querySelector('#login-user-name');
-    const loginPassword = document.querySelector('#login-password');
-    if (loginName.value.slice(0, 8) === 'traveler' && loginPassword.value === 'travel2020') {
-      travelerID = loginName.value.slice(8, 10)
-      dashboard.classList.toggle('hidden')
-      loginScreen.classList.toggle('hidden')
-      pageLoad();
-    } else if (loginName.value.slice(0, 8) === 'traveler' && loginPassword.value !== 'travel2020') {
-      let warning = document.createElement('p');
-      loginScreen.appendChild(warning)
-      warning.innerText = "Please enter a valid password!"
-    } else if (loginName.value.slice(0, 8) !== 'traveler') {
-      let warning = document.createElement('p');
-      loginScreen.appendChild(warning)
-      warning.innerText = "Please enter a valid username!"
-    }
-  },
 
   checkFields() {
     const tripStartDate = document.querySelector('.start-date')
@@ -111,13 +68,22 @@ export const domUpdates = {
     const travelerCount = document.querySelector('.traveler-count')
     const tripDestination = document.querySelector('.destination-list')
     const bookItButton = document.querySelector('.book-trip');
-    console.log(travelerCount.value.length)
+
     if (tripStartDate.value && tripEndDate.value && travelerCount.value) {
       bookItButton.classList.remove('hidden')
       return
     } else {
       tripPreviewTitle.innerText = "Please fill out form completely!"
     }
+  },
+
+  showSuccessPost() {
+    const messageTitle = document.querySelector('.destination-preview-title')
+    const message = document.querySelector('.destination-preview-message')
+    tripPreview.classList.add('hidden')
+    highlight.classList.remove('hidden')
+    messageTitle.innerText = "Request submitted!"
+    message.innerText = "Your trip is pending. Please wait for an agent to approve!"
   }
 
 }

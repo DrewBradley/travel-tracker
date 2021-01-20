@@ -132,7 +132,19 @@ button {
   max-width: 80%;
 }
 
-.dashboard .trip-preview, .dashboard .destination-preview {
+.dashboard .dashboard-message {
+  text-align: center;
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
+  grid-area: 2 / 3 / 2 / 5;
+  -webkit-box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+          box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.98);
+  padding: 2%;
+  background-color: rgba(236, 245, 248, 0.7);
+}
+
+.dashboard .trip-preview {
   border-radius: 5px;
   display: -ms-grid;
   display: grid;
@@ -151,7 +163,7 @@ button {
   grid-area: 2 / 3 / 2 / 5;
 }
 
-.dashboard .trip-preview .trip-preview-title, .dashboard .trip-preview .destination-preview-title, .dashboard .destination-preview .trip-preview-title, .dashboard .destination-preview .destination-preview-title {
+.dashboard .trip-preview .trip-preview-title, .dashboard .trip-preview .destination-preview-title {
   cursor: pointer;
   margin: 0;
   -ms-grid-row: 1;
@@ -161,14 +173,14 @@ button {
   grid-area: 1 / 1 / 2 / 3;
 }
 
-.dashboard .trip-preview .trip-preview-data, .dashboard .destination-preview .trip-preview-data {
+.dashboard .trip-preview .trip-preview-data {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-area: 2 / 1 / 2 / 2;
 }
 
-.dashboard .trip-preview .trip-preview-image, .dashboard .trip-preview .destination-preview-image, .dashboard .destination-preview .trip-preview-image, .dashboard .destination-preview .destination-preview-image {
+.dashboard .trip-preview .trip-preview-image, .dashboard .trip-preview .destination-preview-image {
   max-height: 200px;
   width: 100%;
   -ms-grid-row: 2;
@@ -243,7 +255,7 @@ button {
     grid-area: auto;
     font-size: 1.5rem;
   }
-  .dashboard .trip-preview, .dashboard .destination-preview {
+  .dashboard .trip-preview, .dashboard .dashboard-message {
     grid-area: auto;
   }
   .dashboard .dashboard-year-review {
@@ -267,7 +279,7 @@ button {
     grid-area: 2;
     font-size: 1rem;
   }
-  .dashboard .trip-preview, .dashboard .destination-preview {
+  .dashboard .trip-preview, .dashboard .dashboard-message {
     -ms-grid-row: 4;
     grid-area: 4;
   }
