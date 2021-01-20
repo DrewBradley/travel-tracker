@@ -133,6 +133,7 @@ button {
 }
 
 .dashboard .dashboard-message {
+  border-radius: 5px;
   text-align: center;
   -ms-grid-row: 2;
   -ms-grid-column: 3;
